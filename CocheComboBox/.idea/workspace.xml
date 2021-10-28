@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f68da4f1-5340-4378-a607-075a907d92a5" name="Default Changelist" comment="" />
+    <list default="true" id="f68da4f1-5340-4378-a607-075a907d92a5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/.idea/libraries/jgoodies_common_1_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/EditorMVC.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/Libs/jgoodies-common-1.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/Libs/jgoodies-forms-1.8.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/src/com/alexgg/editormvc/Controlador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/src/com/alexgg/editormvc/Modelo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/src/com/alexgg/editormvc/Principal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/src/com/alexgg/editormvc/Vista.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EditorMVC/src/com/alexgg/editormvc/Vista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CocheComboBox/Vista$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CocheComboBox/Vista$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CocheComboBox/Vista$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CocheComboBox/Vista$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CocheComboBox/Vista$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CocheComboBox/Vista$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CocheComboBox/Vista.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CocheComboBox/Vista.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ELENA" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +38,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1zo4q1xSvAGC4bXGZlPYBSVP3VK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -68,10 +96,26 @@
       <updated>1634801293671</updated>
       <workItem from="1634801300605" duration="1650000" />
       <workItem from="1634890639962" duration="6135000" />
+      <workItem from="1635149626563" duration="2161000" />
+      <workItem from="1635232853724" duration="10000" />
+      <workItem from="1635238807201" duration="8000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
