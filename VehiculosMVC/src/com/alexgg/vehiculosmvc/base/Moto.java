@@ -14,6 +14,14 @@ public class Moto extends Vehiculo {
         this.kms = kms;
     }
 
+    public void setKms(double kms) {
+        this.kms = kms;
+    }
+
+    public double getKms() {
+        return kms;
+    }
+
     @Override
     public String toString() {
         return "Coche{" +

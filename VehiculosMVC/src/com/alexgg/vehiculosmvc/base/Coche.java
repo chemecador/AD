@@ -14,6 +14,10 @@ public class Coche extends Vehiculo {
         this.numPlazas = numPlazas;
     }
 
+    public Coche() {
+
+    }
+
     public int getNumPlazas() {
         return numPlazas;
     }
