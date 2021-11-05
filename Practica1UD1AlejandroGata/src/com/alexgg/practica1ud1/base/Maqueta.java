@@ -14,13 +14,21 @@ public class Maqueta extends Producto {
         this.numFiguras = numFiguras;
     }
 
+    public int getNumFiguras() {
+        return numFiguras;
+    }
+
+    public void setNumFiguras(int numFiguras) {
+        this.numFiguras = numFiguras;
+    }
+
     @Override
     public String toString() {
         return "Puzzle{" +
-                "precio=" + precio +
-                ", marca='" + marca + '\'' +
-                ", id=" + id +
-                ", fechaProduccion=" + fechaProduccion +
+                "precio=" + getPrecio() +
+                ", marca='" + getMarca() + '\'' +
+                ", id=" + getId() +
+                ", fechaProduccion=" + getFechaProduccion() +
                 '}';
     }
 }

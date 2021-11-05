@@ -14,13 +14,21 @@ public class Puzzle extends Producto {
         this.numPiezas = numPiezas;
     }
 
+    public int getNumPiezas() {
+        return numPiezas;
+    }
+
+    public void setNumPiezas(int numPiezas) {
+        this.numPiezas = numPiezas;
+    }
+
     @Override
     public String toString() {
         return "Puzzle{" +
-                "precio=" + precio +
-                ", marca='" + marca + '\'' +
-                ", id=" + id +
-                ", fechaProduccion=" + fechaProduccion +
+                "precio=" + getPrecio() +
+                ", marca='" + getMarca() + '\'' +
+                ", id=" + getId() +
+                ", fechaProduccion=" + getFechaProduccion() +
                 '}';
     }
 }

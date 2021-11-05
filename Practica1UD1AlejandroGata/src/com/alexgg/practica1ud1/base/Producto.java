@@ -3,11 +3,11 @@ package com.alexgg.practica1ud1.base;
 
 import java.time.LocalDate;
 
-public class Producto {
-    Double precio;
-    String marca;
-    int id;
-    LocalDate fechaProduccion;
+public abstract class Producto {
+    private Double precio;
+    private String marca;
+    private int id;
+    private LocalDate fechaProduccion;
 
     public Producto() {
     }

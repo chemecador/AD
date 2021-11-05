@@ -14,13 +14,21 @@ public class JuegoDeMesa extends Producto {
         this.numJugadores = numJugadores;
     }
 
+    public int getNumJugadores() {
+        return numJugadores;
+    }
+
+    public void setNumJugadores(int numJugadores) {
+        this.numJugadores = numJugadores;
+    }
+
     @Override
     public String toString() {
         return "Puzzle{" +
-                "precio=" + precio +
-                ", marca='" + marca + '\'' +
-                ", id=" + id +
-                ", fechaProduccion=" + fechaProduccion +
+                "precio=" + getPrecio() +
+                ", marca='" + getMarca() + '\'' +
+                ", id=" + getId() +
+                ", fechaProduccion=" + getFechaProduccion() +
                 '}';
     }
 }

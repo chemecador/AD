@@ -8,7 +8,7 @@ import javax.swing.*;
 public class Vista {
     private JPanel panel1;
     public JTextField idProductoTxt;
-    public JTextArea piezasJugadoresTxt;
+    public JTextArea piezasFigurasJugadoresTxt;
     public JButton nuevoBtn;
     public JButton importarBtn;
     public JButton exportarBtn;
@@ -19,23 +19,24 @@ public class Vista {
     public JRadioButton juegoDeMesaRadioBtn;
     public JTextField precioTxt;
     public JTextField marcaTxt;
-    public JList list1;
+    public JLabel piezasFigurasJugadoresLbl;
     public JFrame frame;
     public DefaultListModel<Producto> dlmProducto;
 
     public Vista() {
-        frame = new JFrame("Vista");
+        frame = new JFrame("VehiculosMVC");
         frame.setContentPane(panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+
         initComponents();
     }
 
     private void initComponents() {
         dlmProducto = new DefaultListModel<Producto>();
-        list1.setModel(dlmProducto);
+        list.setModel(dlmProducto);
     }
 }
 
