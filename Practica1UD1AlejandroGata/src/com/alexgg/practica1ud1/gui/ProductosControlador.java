@@ -21,11 +21,15 @@ import java.util.Properties;
 
 import static com.sun.deploy.uitoolkit.ToolkitStore.dispose;
 
+/**
+ * Clase ProductosControlador. Contiene el controlador del programa, que se encarga de unir la Vista y el Modelo.
+ **/
 public class ProductosControlador implements ActionListener, ListSelectionListener, WindowListener {
     private Vista vista;
     private ProductosModelo modelo;
     private File ultimaRutaExportada;
 
+    //constructor
     public ProductosControlador(Vista vista, ProductosModelo modelo) {
         this.vista = vista;
         this.modelo = modelo;
@@ -214,7 +218,6 @@ public class ProductosControlador implements ActionListener, ListSelectionListen
     @Override
     public void windowClosing(WindowEvent e) {
         int resp = Util.mensajeConfirmacion("¿Desea cerrar la ventana?", "Salir");
-        System.out.println(resp);
         if (resp == JOptionPane.OK_OPTION) {
             try {
                 guardarDatosConfiguracion();

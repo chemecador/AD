@@ -5,6 +5,9 @@ import com.github.lgooddatepicker.components.DatePicker;
 
 import javax.swing.*;
 
+/**
+ * Clase que contiene la interfaz gráfica.
+ * */
 public class Vista {
     private JPanel panel1;
     public JTextField idProductoTxt;
@@ -23,6 +26,7 @@ public class Vista {
     public JFrame frame;
     public DefaultListModel<Producto> dlmProducto;
 
+    //Constructor
     public Vista() {
         frame = new JFrame("VehiculosMVC");
         frame.setContentPane(panel1);
@@ -33,7 +37,7 @@ public class Vista {
 
         initComponents();
     }
-
+    //Iniciar los componentes
     private void initComponents() {
         dlmProducto = new DefaultListModel<Producto>();
         list.setModel(dlmProducto);
