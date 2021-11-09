@@ -18,13 +18,18 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Clase que contiene el modelo de la aplicación.
+ * */
 public class ProductosModelo {
+    //atributos
     private ArrayList<Producto> listaProductos;
 
+    //constructor
     public ProductosModelo() {
         listaProductos = new ArrayList<Producto>();
     }
-
+    //getters y setters
     public ArrayList<Producto> getListaProductos() {
         return listaProductos;
     }
@@ -33,21 +38,26 @@ public class ProductosModelo {
         this.listaProductos = listaProductos;
     }
 
+    //da de alta un puzzle, añadiéndolo a la lista de productos
     public void altaPuzzle(Double precio, String marca, int id, LocalDate fechaProduccion, int numPiezas) {
         Puzzle nuevoPuzzle = new Puzzle(precio, marca, id, fechaProduccion, numPiezas);
         listaProductos.add(nuevoPuzzle);
     }
 
+    //da de alta una maqueta, añadiéndola a la lista de productos
     public void altaMaqueta(Double precio, String marca, int id, LocalDate fechaProduccion, int numFiguras) {
         Maqueta nuevaMaqueta = new Maqueta(precio, marca, id, fechaProduccion, numFiguras);
         listaProductos.add(nuevaMaqueta);
     }
 
+
+    //da de alta un juego de mesa, añadiéndolo a la lista de productos
     public void altaJuegoDeMesa(Double precio, String marca, int id, LocalDate fechaProduccion, int numJugadores) {
         JuegoDeMesa nuevoJuego = new JuegoDeMesa(precio, marca, id, fechaProduccion, numJugadores);
         listaProductos.add(nuevoJuego);
     }
 
+    //comprueba si el ID es único
     public boolean existeId(int id) {
         for (Producto unProducto : listaProductos) {
             if (unProducto.getId() == id)
@@ -56,6 +66,7 @@ public class ProductosModelo {
         return false;
     }
 
+    //exporta los datos a un fichero XML
     public void exportarXML(File fichero) throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -125,6 +136,7 @@ public class ProductosModelo {
         }
     }
 
+    //importa los datos de un fichero XML
     public void importarXML(File fichero) throws ParserConfigurationException, IOException, SAXException {
         listaProductos = new ArrayList<Producto>();
         Puzzle puzzle = null;

@@ -19,12 +19,12 @@ import java.awt.event.WindowListener;
 import java.io.*;
 import java.util.Properties;
 
-import static com.sun.deploy.uitoolkit.ToolkitStore.dispose;
-
 /**
  * Clase ProductosControlador. Contiene el controlador del programa, que se encarga de unir la Vista y el Modelo.
  **/
 public class ProductosControlador implements ActionListener, ListSelectionListener, WindowListener {
+
+    //atributos
     private Vista vista;
     private ProductosModelo modelo;
     private File ultimaRutaExportada;
@@ -42,6 +42,7 @@ public class ProductosControlador implements ActionListener, ListSelectionListen
         addListSelectionListener(this);
         addWindowListener(this);
     }
+
     //listener de los radioButton y botones
     private void addActionListener(ActionListener listener) {
         vista.puzzleRadioBtn.addActionListener(listener);
@@ -51,6 +52,8 @@ public class ProductosControlador implements ActionListener, ListSelectionListen
         vista.importarBtn.addActionListener(listener);
         vista.nuevoBtn.addActionListener(listener);
     }
+
+    //carga, si puede, los datos del fichero productos.conf
     private void cargarDatosConfiguracion() throws IOException {
         Properties configuracion = new Properties();
         FileReader archivo = null;
@@ -67,10 +70,13 @@ public class ProductosControlador implements ActionListener, ListSelectionListen
         }
     }
 
+
+    //actualiza la última ruta exportada
     private void actualizarDatosConfiguracion(File ultimaRutaExportada) {
         this.ultimaRutaExportada = ultimaRutaExportada;
     }
 
+    //guarda los datos de la última ruta exportada
     private void guardarDatosConfiguracion() throws IOException {
         Properties configuracion = new Properties();
         configuracion.setProperty("ultimaRutaExportada", ultimaRutaExportada.getAbsolutePath());
@@ -85,37 +91,55 @@ public class ProductosControlador implements ActionListener, ListSelectionListen
 
         switch (actionCommand) {
             case "Nuevo":
+                String tipo = "";
                 if (hayCamposVacios()) {
-                    Util.mensajeError("Los siguientes campos no pueden estar vacios \n" +
+                    Util.mensajeError("Alguno de estos campos está vacío:\n" +
                             "Precio \n Marca \n Id \n Fecha producción\n" +
                             vista.piezasFigurasJugadoresTxt.getText());
                     break;
                 }
+                if (!isNumeric(vista.precioTxt.getText())) {
+                    vista.errorLbl.setText("El precio debe ser un número.");
+                    break;
+                }
+                if (!isNumeric(vista.idProductoTxt.getText())) {
+                    vista.errorLbl.setText("El id del producto debe ser un número.");
+                    break;
+                }
+                if (!isNumeric(vista.piezasFigurasJugadoresTxt.getText())) {
+                    vista.errorLbl.setText("El " + vista.piezasFigurasJugadoresLbl.getText() + " debe ser un número.");
+                    break;
+                }
+
 
                 if (modelo.existeId(Integer.parseInt(vista.idProductoTxt.getText()))) {
                     Util.mensajeError("Ya existe un producto con este ID\n" +
                             vista.piezasFigurasJugadoresTxt.getText());
                     break;
                 }
+
                 if (vista.puzzleRadioBtn.isSelected()) {
                     modelo.altaPuzzle(Double.parseDouble(vista.precioTxt.getText()),
                             vista.marcaTxt.getText(),
                             Integer.parseInt(vista.idProductoTxt.getText()),
                             vista.fechaDP.getDate(),
                             Integer.parseInt(vista.piezasFigurasJugadoresTxt.getText()));
+                    tipo = "puzzle";
                 } else if (vista.maquetaRadioBtn.isSelected()) {
                     modelo.altaMaqueta(Double.parseDouble(vista.precioTxt.getText()),
                             vista.marcaTxt.getText(),
                             Integer.parseInt(vista.idProductoTxt.getText()),
                             vista.fechaDP.getDate(),
                             Integer.parseInt(vista.piezasFigurasJugadoresTxt.getText()));
+                    tipo = "maqueta";
                 } else if (vista.juegoDeMesaRadioBtn.isSelected()) {
                     modelo.altaJuegoDeMesa(Double.parseDouble(vista.precioTxt.getText()),
                             vista.marcaTxt.getText(),
                             Integer.parseInt(vista.idProductoTxt.getText()),
-                            vista.fechaDP.getDate(),
-                            Integer.parseInt(vista.piezasFigurasJugadoresTxt.getText()));
+                            vista.fechaDP.getDate(), Integer.parseInt(vista.piezasFigurasJugadoresTxt.getText()));
+                    tipo = "juego de mesa";
                 }
+                vista.errorLbl.setText("Rellenado un/a " + tipo);
                 limpiarCampos();
                 refrescar();
                 break;
@@ -163,6 +187,7 @@ public class ProductosControlador implements ActionListener, ListSelectionListen
         }
     }
 
+    //vacía los campos de la ventana
     private void limpiarCampos() {
         vista.precioTxt.setText(null);
         vista.marcaTxt.setText(null);
@@ -171,7 +196,7 @@ public class ProductosControlador implements ActionListener, ListSelectionListen
         vista.piezasFigurasJugadoresTxt.setText(null);
     }
 
-    //comprobar campos vacios
+    //comprueba si hay campos vacíos
     private boolean hayCamposVacios() {
         if (vista.precioTxt.getText().isEmpty() ||
                 vista.marcaTxt.getText().isEmpty() ||
@@ -183,7 +208,7 @@ public class ProductosControlador implements ActionListener, ListSelectionListen
         return false;
     }
 
-    //cargar datos en la lista
+    //carga los datos en la lista
     public void refrescar() {
         vista.dlmProducto.clear();
         for (Producto unProducto : modelo.getListaProductos()) {
@@ -191,10 +216,34 @@ public class ProductosControlador implements ActionListener, ListSelectionListen
         }
     }
 
+    //comprueba si el dato introducido por parámetro es un número
+    public boolean isNumeric(String numero) {
+        return (isInteger(numero) || isDouble(numero));
+    }
+
+    //comprueba si el dato introducido por parámetro es un entero
+    public boolean isInteger(String numero) {
+        try {
+            Integer.parseInt(numero);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    //comprueba si el dato introducido por parámetro es un número real
+    public boolean isDouble(String numero) {
+        try {
+            Double.parseDouble(numero);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting()) {
-            Producto productoSeleccionado= (Producto) vista.list.getSelectedValue();
+            Producto productoSeleccionado = (Producto) vista.list.getSelectedValue();
             vista.precioTxt.setText(String.valueOf(productoSeleccionado.getPrecio()));
             vista.marcaTxt.setText(productoSeleccionado.getMarca());
             vista.idProductoTxt.setText(String.valueOf(productoSeleccionado.getId()));
@@ -214,7 +263,6 @@ public class ProductosControlador implements ActionListener, ListSelectionListen
     }
 
 
-
     @Override
     public void windowClosing(WindowEvent e) {
         int resp = Util.mensajeConfirmacion("¿Desea cerrar la ventana?", "Salir");
@@ -225,21 +273,25 @@ public class ProductosControlador implements ActionListener, ListSelectionListen
                 e1.printStackTrace();
             }
             System.exit(0);
-        }
-        else if(resp == JOptionPane.OK_CANCEL_OPTION){
+        } else if (resp == JOptionPane.OK_CANCEL_OPTION) {
         }
     }
-    private void addWindowListener(WindowListener listener){
+
+    //añade el listener de la ventana
+    private void addWindowListener(WindowListener listener) {
         vista.frame.addWindowListener(listener);
     }
-    //listener de la lista
+
+    //añade el listener de la lista
     private void addListSelectionListener(ListSelectionListener listener) {
         vista.list.addListSelectionListener(listener);
     }
+
     @Override
     public void windowOpened(WindowEvent e) {
 
     }
+
     @Override
     public void windowClosed(WindowEvent e) {
 

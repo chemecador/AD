@@ -4,18 +4,24 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 
+/**
+ * Clase Util. Contiene métodos para personalizar la aplicación.
+ * */
 public class Util {
 
+    //muestra el mensaje de error
     public static void mensajeError(String mensaje) {
         JOptionPane.showMessageDialog(null,
                 mensaje,"Error",JOptionPane.ERROR_MESSAGE);
     }
 
+    //devuelve la respuesta que se selecciona
     public static int mensajeConfirmacion(String mensaje, String titulo) {
         return JOptionPane.showConfirmDialog(null,mensaje,
                 titulo,JOptionPane.YES_NO_OPTION);
     }
 
+    //selecciona el fichero que se quiere utilizar
     public static JFileChooser crearSelectorFichero(File rutaDefecto,
                                                     String tipoArchivos,
                                                     String extension) {

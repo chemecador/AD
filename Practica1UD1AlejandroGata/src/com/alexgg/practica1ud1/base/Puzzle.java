@@ -6,6 +6,7 @@ import java.time.LocalDate;
  * Clase Maqueta, que hereda de Producto.
  */
 public class Puzzle extends Producto {
+    //atributos
     private int numPiezas;
 
     //constructor
@@ -18,6 +19,7 @@ public class Puzzle extends Producto {
         super(precio, marca, id, fechaProduccion);
         this.numPiezas = numPiezas;
     }
+
     //getters y setters
     public int getNumPiezas() {
         return numPiezas;

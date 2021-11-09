@@ -9,15 +9,11 @@ import com.alexgg.practica1ud1.gui.Vista;
  * Clase Principal. Contiene el main para ejecutar el programa.
  * */
 public class Principal {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         Vista vista = new Vista();
         ProductosModelo modelo= new ProductosModelo();
         ProductosControlador controlador = new ProductosControlador(vista,modelo);
-        /**
-         * COSAS POR MEJORAR:
-         * meter una letra en un nextInt()
-         *
-         * */
+
     }
 }

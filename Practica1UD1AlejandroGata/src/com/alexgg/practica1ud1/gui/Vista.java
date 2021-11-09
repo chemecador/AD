@@ -23,6 +23,7 @@ public class Vista {
     public JTextField precioTxt;
     public JTextField marcaTxt;
     public JLabel piezasFigurasJugadoresLbl;
+    public JLabel errorLbl;
     public JFrame frame;
     public DefaultListModel<Producto> dlmProducto;
 
