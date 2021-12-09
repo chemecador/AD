@@ -68,13 +68,6 @@
         </constraints>
         <properties/>
       </component>
-      <component id="e33ae" class="com.github.lgooddatepicker.components.DateTimePicker" binding="dateTimePicker">
-        <constraints>
-          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties/>
-      </component>
       <component id="b85a5" class="javax.swing.JButton" binding="btnBuscar">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -128,6 +121,13 @@
         <properties>
           <text value=""/>
         </properties>
+      </component>
+      <component id="263e5" class="com.github.lgooddatepicker.components.DatePicker" binding="datePicker">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties/>
       </component>
     </children>
   </grid>

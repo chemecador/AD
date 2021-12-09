@@ -6,5 +6,4 @@ precio double,
 marca varchar (40),
 fecha_produccion timestamp);
 
-select * from productos;
-insert into productos values (1,15,'santillana',null);
+delete from productos;

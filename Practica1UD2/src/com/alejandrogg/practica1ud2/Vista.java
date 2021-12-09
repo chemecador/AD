@@ -1,6 +1,6 @@
 package com.alejandrogg.practica1ud2;
 
-import com.github.lgooddatepicker.components.DateTimePicker;
+import com.github.lgooddatepicker.components.DatePicker;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -15,8 +15,7 @@ public class Vista {
     JTable tabla;
     JTextField txtBuscar;
     JLabel lblAccion;
-    DateTimePicker dateTimePicker;
-    JTextField txtModelo;
+    DatePicker datePicker;
     JFrame frame;
     DefaultTableModel dtm;
     JMenuItem itemConectar;
