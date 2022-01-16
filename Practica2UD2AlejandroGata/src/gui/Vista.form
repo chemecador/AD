@@ -166,7 +166,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="5493" class="javax.swing.JButton" binding="anadirLibro">
+              <component id="5493" class="javax.swing.JButton" binding="anadirPuzzle">
                 <constraints>
                   <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -175,7 +175,7 @@
                   <text value="Añadir"/>
                 </properties>
               </component>
-              <component id="8c3a4" class="javax.swing.JButton" binding="modificarLibro">
+              <component id="8c3a4" class="javax.swing.JButton" binding="modificarPuzzle">
                 <constraints>
                   <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -184,7 +184,7 @@
                   <text value="Modificar"/>
                 </properties>
               </component>
-              <component id="e0132" class="javax.swing.JButton" binding="eliminarLibro">
+              <component id="e0132" class="javax.swing.JButton" binding="eliminarPuzzle">
                 <constraints>
                   <grid row="18" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -201,7 +201,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="7c488" class="javax.swing.JTable" binding="librosTabla">
+                  <component id="7c488" class="javax.swing.JTable" binding="puzzlesTabla">
                     <constraints/>
                     <properties/>
                   </component>
@@ -209,7 +209,7 @@
               </scrollpane>
             </children>
           </grid>
-          <grid id="e2ba7" binding="JPanelAutor" layout-manager="FormLayout">
+          <grid id="e2ba7" binding="JPanelComprador" layout-manager="FormLayout">
             <rowspec value="center:d:noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
@@ -322,13 +322,13 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="6c6c5" class="javax.swing.JTable" binding="autoresTabla">
+                  <component id="6c6c5" class="javax.swing.JTable" binding="compradoresTabla">
                     <constraints/>
                     <properties/>
                   </component>
                 </children>
               </scrollpane>
-              <component id="b5606" class="javax.swing.JButton" binding="anadirAutor">
+              <component id="b5606" class="javax.swing.JButton" binding="anadirComprador">
                 <constraints>
                   <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -337,7 +337,7 @@
                   <text value="Añadir"/>
                 </properties>
               </component>
-              <component id="306be" class="javax.swing.JButton" binding="eliminarAutor">
+              <component id="306be" class="javax.swing.JButton" binding="eliminarComprador">
                 <constraints>
                   <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -346,7 +346,7 @@
                   <text value="Eliminar"/>
                 </properties>
               </component>
-              <component id="5ba4a" class="javax.swing.JButton" binding="modificarAutor">
+              <component id="5ba4a" class="javax.swing.JButton" binding="modificarComprador">
                 <constraints>
                   <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>

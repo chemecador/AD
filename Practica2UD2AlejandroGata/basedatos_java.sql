@@ -1,12 +1,13 @@
-CREATE DATABASE if not exists libreria;
+CREATE DATABASE if not exists tiendapuzzles;
 --
-USE libreria;
+USE tiendapuzzles;
 --
-create table if not exists autores (
-idautor int auto_increment primary key,
+create table if not exists compradores(
+idcomprador int auto_increment primary key,
 nombre varchar(50) not null,
 apellidos varchar(150) not null,
-fechanacimiento date,
+dni varchar(10),
+fechacompra date,
 pais varchar(50));
 --
 create table if not exists editoriales (
@@ -14,35 +15,36 @@ ideditorial int auto_increment primary key,
 editorial varchar(50) not null,
 email varchar(100) not null,
 telefono varchar(9),
-tipoeditorial varchar(50),
+antiguedad int,
+reputacion varchar(10),
 web varchar(500));
 --
-create table if not exists libros(
-idlibro int auto_increment primary key,
+create table if not exists puzzles(
+idpuzzle int auto_increment primary key,
 titulo varchar(50) not null,
 isbn varchar(40) not null UNIQUE,
 ideditorial int not null,
 genero varchar(30),
-idautor int not null,
+idcomprador int not null,
 precio float not null,
-fechalanzamiento date);
+fechaedicion date);
 --
-alter table libros
+alter table puzzles
 	add foreign key (ideditorial) references editoriales(ideditorial),
-    add foreign key (idautor) references autores(idautor);
+    add foreign key (idcomprador) references compradores(idcomprador);
 --
 create function existeIsbn(f_isbn varchar(40))
 returns bit
 begin
 	declare i int;
     set i = 0;
-    while ( i < (select max(idlibro) from libros)) do
-    if  ((select isbn from libros where idlibro = (i + 1)) like f_isbn) then return 1;
+    while ( i < (select max(idpuzzle) from puzzles)) do
+    if  ((select isbn from puzzles where idpuzzle = (i + 1)) like f_isbn) then return 1;
     end if;
     set i = i + 1;
     end while;
     return 0;
-end; 
+end;
 --
 create function existeNombreEditorial(f_name varchar(50))
 returns bit
@@ -55,17 +57,17 @@ begin
     set i = i + 1;
     end while;
     return 0;
-end; 
+end;
 --
-create function existeNombreAutor(f_name varchar(202))
+create function existeNombreComprador(f_name varchar(202))
 returns bit
 begin
 	declare i int;
     set i = 0;
-    while ( i < (select max(idautor) from autores)) do
-    if  ((select concat(apellidos, ', ', nombre) from autores where idautor = (i + 1)) like f_name) then return 1;
+    while ( i < (select max(idcomprador) from compradores)) do
+    if  ((select concat(apellidos, ', ', nombre) from compradores where idcomprador = (i + 1)) like f_name) then return 1;
     end if;
     set i = i + 1;
     end while;
     return 0;
-end; 
+end;

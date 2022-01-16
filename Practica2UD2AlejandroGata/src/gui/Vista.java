@@ -1,7 +1,7 @@
 package gui;
 
-import base.enums.GenerosLibros;
-import base.enums.TiposEditoriales;
+import base.enums.GenerosPuzzles;
+import base.enums.Reputacion;
 import com.github.lgooddatepicker.components.DatePicker;
 
 import javax.swing.*;
@@ -13,10 +13,10 @@ public class Vista extends JFrame {
     private JTabbedPane tabbedPane;
     private JPanel panel1;
     private JPanel JPanelPuzzle;
-    private JPanel JPanelAutor;
+    private JPanel JPanelComprador;
     private JPanel JPanelEditorial;
 
-    //LIBROS
+    //PUZZLES
     JTextField txtTitulo;
     JComboBox comboComprador;
     JComboBox comboEditorial;
@@ -24,20 +24,20 @@ public class Vista extends JFrame {
     DatePicker fecha;
     JTextField txtIsbn;
     JTextField txtPrecio;
-    JTable librosTabla;
-    JButton anadirLibro;
-    JButton modificarLibro;
-    JButton eliminarLibro;
+    JTable puzzlesTabla;
+    JButton anadirPuzzle;
+    JButton modificarPuzzle;
+    JButton eliminarPuzzle;
 
-    //AUTORES
+    //COMPRADORES
     JTextField txtNombre;
     JTextField txtApellidos;
     DatePicker fechaCompra;
     JTextField txtPais;
-    JTable autoresTabla;
-    JButton eliminarAutor;
-    JButton anadirAutor;
-    JButton modificarAutor;
+    JTable compradoresTabla;
+    JButton eliminarComprador;
+    JButton anadirComprador;
+    JButton modificarComprador;
 
     //EDITORIAL
     JTextField txtNombreEditorial;
@@ -49,16 +49,16 @@ public class Vista extends JFrame {
     JButton eliminarEditorial;
     JButton anadirEditorial;
     JButton modificarEditorial;
-    private JTextField txtAnti;
-    private JTextField txtDni;
+    JTextField txtAnti;
+    JTextField txtDni;
 
     //BUSQUEDA
     JLabel etiquetaEstado;
 
     //DEFAULT TABLE MODEL
     DefaultTableModel dtmEditoriales;
-    DefaultTableModel dtmAutores;
-    DefaultTableModel dtmLibros;
+    DefaultTableModel dtmCompradores;
+    DefaultTableModel dtmPuzzles;
 
     //BARRA MENU
     JMenuItem itemOpciones;
@@ -92,10 +92,10 @@ public class Vista extends JFrame {
     }
 
     private void setTableModels() {
-        this.dtmLibros = new DefaultTableModel();
-        this.librosTabla.setModel(dtmLibros);
-        this.dtmAutores = new DefaultTableModel();
-        this.autoresTabla.setModel(dtmAutores);
+        this.dtmPuzzles = new DefaultTableModel();
+        this.puzzlesTabla.setModel(dtmPuzzles);
+        this.dtmCompradores = new DefaultTableModel();
+        this.compradoresTabla.setModel(dtmCompradores);
         this.dtmEditoriales = new DefaultTableModel();
         this.editorialesTabla.setModel(dtmEditoriales);
     }
@@ -120,11 +120,11 @@ public class Vista extends JFrame {
     }
 
     private void setEnumComboBox() {
-        for (TiposEditoriales constant : TiposEditoriales.values()) {
+        for (Reputacion constant : Reputacion.values()) {
             comboRepu.addItem(constant.getValor());
         }
         comboRepu.setSelectedIndex(-1);
-        for (GenerosLibros constant : GenerosLibros.values()) {
+        for (GenerosPuzzles constant : GenerosPuzzles.values()) {
             comboGenero.addItem(constant.getValor());
         }
         comboGenero.setSelectedIndex(-1);
