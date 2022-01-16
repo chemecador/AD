@@ -210,6 +210,7 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                     } else {
                         modelo.insertarComprador(vista.txtNombre.getText(),
                                 vista.txtApellidos.getText(),
+                                vista.txtDni.getText(),
                                 vista.fechaCompra.getDate(),
                                 vista.txtPais.getText());
                         refrescarCompradores();
@@ -228,7 +229,7 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                         vista.compradoresTabla.clearSelection();
                     } else {
                         modelo.modificarComprador(vista.txtNombre.getText(), vista.txtApellidos.getText(),
-                                vista.fechaCompra.getDate(), vista.txtPais.getText(),
+                                vista.txtDni.getText(), vista.fechaCompra.getDate(), vista.txtPais.getText(),
                                 Integer.parseInt((String) vista.compradoresTabla.getValueAt(vista.compradoresTabla.getSelectedRow(), 0)));
                         refrescarCompradores();
                     }
@@ -254,7 +255,7 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                         vista.editorialesTabla.clearSelection();
                     } else {
                         modelo.insertarEditorial(vista.txtNombreEditorial.getText(), vista.txtEmail.getText(),
-                                vista.txtTelefono.getText(),
+                                vista.txtTelefono.getText(), Integer.parseInt(vista.txtAnti.getText()),
                                 (String) vista.comboRepu.getSelectedItem(),
                                 vista.txtWeb.getText());
                         refrescarEditorial();
@@ -273,7 +274,7 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                         vista.editorialesTabla.clearSelection();
                     } else {
                         modelo.modificarEditorial(vista.txtNombreEditorial.getText(), vista.txtEmail.getText(), vista.txtTelefono.getText(),
-                                String.valueOf(vista.comboRepu.getSelectedItem()), vista.txtWeb.getText(),
+                                Integer.parseInt(vista.txtAnti.getText()), String.valueOf(vista.comboRepu.getSelectedItem()), vista.txtWeb.getText(),
                                 Integer.parseInt((String) vista.editorialesTabla.getValueAt(vista.editorialesTabla.getSelectedRow(), 0)));
                         refrescarEditorial();
                     }

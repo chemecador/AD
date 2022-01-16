@@ -168,7 +168,7 @@ public class Modelo {
     }
 
     void modificarComprador(String nombre, String apellidos, String dni, LocalDate fechaCompra, String pais, int idcomprador) {
-        String sentenciaSql = "UPDATE compradores SET nombre=?,apellidos=?,fechacompra=?,pais=?" +
+        String sentenciaSql = "UPDATE compradores SET nombre=?,apellidos=?,dni=?,fechacompra=?,pais=?" +
                 "WHERE idcomprador=?";
         PreparedStatement sentencia = null;
         try {
@@ -178,6 +178,7 @@ public class Modelo {
             sentencia.setString(3, dni);
             sentencia.setDate(4, Date.valueOf(fechaCompra));
             sentencia.setString(5, pais);
+            sentencia.setInt(6, idcomprador);
             sentencia.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -190,10 +191,11 @@ public class Modelo {
                 }
         }
     }
-/********************************************************************/
-    void modificarEditorial(String editorial, String email, String telefono, String tipoEditorial, String web, int ideditorial) {
 
-        String sentenciaSql = "UPDATE editoriales SET editorial = ?, email = ?, telefono = ?, tipoeditorial = ?, web = ?" +
+    /********************************************************************/
+    void modificarEditorial(String editorial, String email, String telefono, int antiguedad, String reputacion, String web, int ideditorial) {
+
+        String sentenciaSql = "UPDATE editoriales SET editorial = ?, email = ?, telefono = ?, antiguedad = ?, reputacion = ?, web = ?" +
                 "WHERE ideditorial = ?";
         PreparedStatement sentencia = null;
 
@@ -202,9 +204,10 @@ public class Modelo {
             sentencia.setString(1, editorial);
             sentencia.setString(2, email);
             sentencia.setString(3, telefono);
-            sentencia.setString(4, tipoEditorial);
-            sentencia.setString(5, web);
-            sentencia.setInt(6, ideditorial);
+            sentencia.setInt(4, antiguedad);
+            sentencia.setString(5, reputacion);
+            sentencia.setString(6, web);
+            sentencia.setInt(7, ideditorial);
             sentencia.executeUpdate();
         } catch (SQLException sqle) {
             sqle.printStackTrace();
@@ -219,10 +222,10 @@ public class Modelo {
     }
 
     void modificarPuzzle(String titulo, String isbn, String editorial, String genero, String comprador,
-                         float precio, LocalDate fechalanzamiento, int idpuzzle) {
+                         float precio, LocalDate fechaEdicion, int idpuzzle) {
 
         String sentenciaSql = "UPDATE puzzles SET titulo = ?, isbn = ?, ideditorial = ?, genero = ?, " +
-                "idcomprador = ?, precio = ?, fechalanzamiento = ? WHERE idpuzzle = ?";
+                "idcomprador = ?, precio = ?, fechaedicion = ? WHERE idpuzzle = ?";
         PreparedStatement sentencia = null;
 
         int ideditorial = Integer.valueOf(editorial.split(" ")[0]);
@@ -236,7 +239,7 @@ public class Modelo {
             sentencia.setString(4, genero);
             sentencia.setInt(5, idcomprador);
             sentencia.setFloat(6, precio);
-            sentencia.setDate(7, Date.valueOf(fechalanzamiento));
+            sentencia.setDate(7, Date.valueOf(fechaEdicion));
             sentencia.setInt(8, idpuzzle);
             sentencia.executeUpdate();
         } catch (SQLException sqle) {
@@ -337,7 +340,7 @@ public class Modelo {
         String sentenciaSql = "SELECT concat(b.idpuzzle) AS 'ID', concat(b.titulo) AS 'Título', concat(b.isbn) AS 'ISBN', " +
                 "concat(e.ideditorial, ' - ', e.editorial) AS 'Editorial', concat(b.genero) AS 'Género', " +
                 "concat(a.idcomprador, ' - ', a.apellidos, ', ', a.nombre) AS 'Comprador', " +
-                "concat(b.precio) AS 'Precio', concat(b.fechalanzamiento) AS 'Fecha de publicación'" +
+                "concat(b.precio) AS 'Precio', concat(b.fechaedicion) AS 'Fecha de edición'" +
                 " FROM puzzles AS b " +
                 "INNER JOIN editoriales AS e ON e.ideditorial = b.ideditorial INNER JOIN " +
                 "compradores AS a ON a.idcomprador = b.idcomprador";
