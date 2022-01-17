@@ -17,16 +17,19 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
     private Modelo modelo;
     private Vista vista;
     private boolean refrescar;
+    private boolean existeTabla;
 
     public Controlador(Vista vista, Modelo modelo) {
         this.modelo = modelo;
         this.vista = vista;
-        modelo.conectar();
+        existeTabla = modelo.conectar();
         setOptions();
         addActionListeners(this);
         addItemListeners(this);
         addWindowListeners(this);
-        refrescarTodo();
+        if (existeTabla) {
+            refrescarTodo();
+        }
     }
 
     private void refrescarTodo() {
@@ -62,6 +65,8 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         vista.modificarEditorial.addActionListener(listener);
         vista.modificarEditorial.setActionCommand("modificarEditorial");
         vista.optionDialog.btnOpcionesGuardar.addActionListener(listener);
+        vista.itemCrearBBDD.addActionListener(listener);
+        vista.itemBorrarBBDD.addActionListener(listener);
         vista.itemOpciones.addActionListener(listener);
         vista.itemSalir.addActionListener(listener);
         vista.btnValidate.addActionListener(listener);
@@ -121,17 +126,30 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         String command = e.getActionCommand();
+        if (!existeTabla && !command.equals("CrearBBDD")) {
+            JOptionPane.showMessageDialog(null, "Debes crearla desde el menú opciones",
+                    "No existe la base de datos tiendapuzzles", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
         switch (command) {
             case "Opciones":
                 vista.adminPasswordDialog.setVisible(true);
+                break;
+            case "CrearBBDD":
+                existeTabla = modelo.crearBBDD();
+                break;
+            case "BorrarBBDD":
+                if (modelo.borrarBBDD()) {
+                    existeTabla = false;
+                }
                 break;
             case "Desconectar":
                 modelo.desconectar();
                 break;
             case "Salir":
                 System.exit(0);
-                break;
             case "abrirOpciones":
                 if (String.valueOf(vista.adminPassword.getPassword()).equals(modelo.getAdminPassword())) {
                     vista.adminPassword.setText("");
@@ -176,9 +194,11 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                 refrescarPuzzles();
                 break;
             case "buscarPuzzle":
-                modelo.buscarPuzzle(vista.txtTitulo.getText());
-                borrarCamposPuzzles();
-                refrescarPuzzles();
+                try {
+                    vista.puzzlesTabla.setModel(construirTableModelPuzzles(modelo.buscarPuzzle(vista.txtTitulo.getText())));
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
                 break;
             case "modificarPuzzle":
                 try {
@@ -235,13 +255,10 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
             break;
             case "buscarComprador": {
                 try {
-                    modelo.buscarComprador(vista.txtNombre.getText());
-                    refrescarCompradores();
-                } catch (NumberFormatException nfe) {
-                    Util.showErrorAlert("Introduce números en los campos que lo requieren");
-                    vista.compradoresTabla.clearSelection();
+                    vista.compradoresTabla.setModel(construirTableModeloCompradores(modelo.buscarComprador(vista.txtDni.getText())));
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
-                borrarCamposCompradores();
             }
             break;
             case "modificarComprador": {
@@ -291,13 +308,10 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
             break;
             case "buscarEditorial": {
                 try {
-                    modelo.buscarEditorial(vista.txtNombreEditorial.getText());
-                    refrescarEditorial();
-                } catch (NumberFormatException nfe) {
-                    Util.showErrorAlert("Introduce números en los campos que lo requieren");
-                    vista.editorialesTabla.clearSelection();
+                    vista.editorialesTabla.setModel(construirTableModelEditoriales(modelo.buscarEditorial(vista.txtNombreEditorial.getText())));
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
-                borrarCamposEditoriales();
             }
             break;
             case "modificarEditorial": {
@@ -438,6 +452,7 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
     private void borrarCamposCompradores() {
         vista.txtNombre.setText("");
         vista.txtApellidos.setText("");
+        vista.txtDni.setText("");
         vista.txtPais.setText("");
         vista.fechaCompra.setText("");
     }
@@ -446,6 +461,7 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         vista.txtNombreEditorial.setText("");
         vista.txtEmail.setText("");
         vista.txtTelefono.setText("");
+        vista.txtAnti.setText("");
         vista.comboRepu.setSelectedIndex(-1);
         vista.txtWeb.setText("");
     }

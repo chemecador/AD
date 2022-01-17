@@ -1,5 +1,6 @@
 package gui;
 
+import javax.swing.*;
 import java.io.*;
 import java.sql.*;
 import java.time.LocalDate;
@@ -36,31 +37,63 @@ public class Modelo {
 
     private Connection conexion;
 
-    void conectar() {
+    boolean conectar() {
         try {
             conexion = DriverManager.getConnection("jdbc:mysql://"
                     + ip + ":3307/tiendapuzzles", user, password);
+            return true;
         } catch (SQLException e) {
-            try {
-                conexion = DriverManager.getConnection("jdbc:mysql://"
-                        + ip + ":3307/", user, password);
-                PreparedStatement statement = null;
 
-                String code = leerFichero();
-                String[] query = code.split("--");
-                for (String aQuery : query) {
-                    statement = conexion.prepareStatement(aQuery);
-                    statement.executeUpdate();
-                }
-                assert statement != null;
-                statement.close();
-            } catch (SQLException | IOException e1) {
-                e1.printStackTrace();
-            }
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Puedes crearla desde el menú opciones",
+                    "No se ha encontrado la base de datos",JOptionPane.PLAIN_MESSAGE);
+            return false;
         }
     }
+    boolean crearBBDD(){
+        try {
+            conexion = DriverManager.getConnection("jdbc:mysql://"
+                    + ip + ":3307/", user, password);
+            PreparedStatement statement = null;
 
+            String code = leerFichero();
+            String[] query = code.split("--");
+            for (String aQuery : query) {
+                statement = conexion.prepareStatement(aQuery);
+                statement.executeUpdate();
+            }
+            assert statement != null;
+            statement.close();
+            JOptionPane.showMessageDialog(null, "Base de datos creada correctamente",
+                    "tiendapuzzles creada", JOptionPane.PLAIN_MESSAGE);
+            return true;
+        } catch (SQLException | IOException e1) {
+            e1.printStackTrace();
+        }
+        return false;
+    }
+    boolean borrarBBDD(){
+
+        String sentenciaSql = "DROP DATABASE tiendapuzzles";
+        PreparedStatement sentencia = null;
+
+        try {
+            sentencia = conexion.prepareStatement(sentenciaSql);
+            sentencia.execute();
+            JOptionPane.showMessageDialog(null, "Base de datos eliminada correctamente",
+                    "tiendapuzzles eliminada", JOptionPane.PLAIN_MESSAGE);
+            return true;
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } finally {
+            if (sentencia != null)
+                try {
+                    sentencia.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+        }
+        return false;
+    }
     private String leerFichero() throws IOException {
         //basedatos_java no tiene delimitador
         //StringBuilder es dinamica
@@ -80,7 +113,7 @@ public class Modelo {
             conexion.close();
             conexion = null;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("No se puede desconectar");
         }
     }
 
@@ -253,58 +286,37 @@ public class Modelo {
         }
     }
 
-    void buscarPuzzle(String titulo) {
-        String sentenciaSql = "SELECT * FROM puzzles WHERE titulo = " + titulo;
-        PreparedStatement sentencia = null;
+    ResultSet buscarPuzzle(String isbn) {
         try {
-            sentencia = conexion.prepareStatement(sentenciaSql);
-            sentencia.executeQuery();
+            String consulta = "SELECT * FROM puzzles WHERE isbn = " + isbn;
+            PreparedStatement sentencia = conexion.prepareStatement(consulta);
+            return sentencia.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            if (sentencia != null)
-                try {
-                    sentencia.close();
-                } catch (SQLException sqle) {
-                    sqle.printStackTrace();
-                }
         }
+        return null;
     }
 
-    void buscarComprador(String dni) {
-        String sentenciaSql = "SELECT * FROM compradores WHERE dni = " + dni;
-        PreparedStatement sentencia = null;
+    ResultSet buscarComprador(String dni) {
         try {
-            sentencia = conexion.prepareStatement(sentenciaSql);
-            sentencia.executeQuery();
+            String consulta = "SELECT * FROM compradores WHERE dni = " + dni;
+            PreparedStatement sentencia = conexion.prepareStatement(consulta);
+            return sentencia.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            if (sentencia != null)
-                try {
-                    sentencia.close();
-                } catch (SQLException sqle) {
-                    sqle.printStackTrace();
-                }
         }
+        return null;
     }
 
-    void buscarEditorial(String nombre) {
-        String sentenciaSql = "SELECT * FROM editoriales WHERE nombre = " + nombre;
-        PreparedStatement sentencia = null;
+    ResultSet buscarEditorial(String nombre) {
         try {
-            sentencia = conexion.prepareStatement(sentenciaSql);
-            sentencia.executeQuery();
+            String consulta = "SELECT * FROM editoriales WHERE nombre = " + nombre;
+            PreparedStatement sentencia = conexion.prepareStatement(consulta);
+            return sentencia.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            if (sentencia != null)
-                try {
-                    sentencia.close();
-                } catch (SQLException sqle) {
-                    sqle.printStackTrace();
-                }
         }
+        return null;
     }
 
     void borrarEditorial(int ideditorial) {

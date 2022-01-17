@@ -65,6 +65,8 @@ public class Vista extends JFrame {
 
     //BARRA MENU
     JMenuItem itemOpciones;
+    JMenuItem itemCrearBBDD;
+    JMenuItem itemBorrarBBDD;
     JMenuItem itemDesconectar;
     JMenuItem itemSalir;
 
@@ -87,7 +89,7 @@ public class Vista extends JFrame {
         this.pack();
         this.setVisible(true);
         this.setSize(new Dimension(this.getWidth() + 200, this.getHeight() + 100));
-        this.setLocationRelativeTo(this);
+        this.setLocationRelativeTo(null);
         //creo cuadro de dialogo
         optionDialog = new OptionDialog(this);
         setMenu();
@@ -114,11 +116,17 @@ public class Vista extends JFrame {
         //por cada item que tenga funcionalidad tiene un ActionCommand
         itemOpciones = new JMenuItem("Opciones");
         itemOpciones.setActionCommand("Opciones");
+        itemCrearBBDD = new JMenuItem("Crear base de datos");
+        itemCrearBBDD.setActionCommand("CrearBBDD");
+        itemBorrarBBDD = new JMenuItem("Borrar base de datos");
+        itemBorrarBBDD.setActionCommand("BorrarBBDD");
         itemDesconectar = new JMenuItem("Desconectar");
         itemDesconectar.setActionCommand("Desconectar");
         itemSalir = new JMenuItem("Salir");
         itemSalir.setActionCommand("Salir");
         menu.add(itemOpciones);
+        menu.add(itemCrearBBDD);
+        menu.add(itemBorrarBBDD);
         menu.add(itemDesconectar);
         menu.add(itemSalir);
         mbBar.add(menu);
