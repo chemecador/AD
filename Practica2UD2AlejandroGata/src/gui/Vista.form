@@ -19,8 +19,10 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="9e1e2" binding="JPanelPuzzle" layout-manager="FormLayout">
+          <grid id="9e1e2" binding="jPanelPuzzle" layout-manager="FormLayout">
             <rowspec value="center:d:noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
@@ -177,7 +179,7 @@
               </component>
               <component id="8c3a4" class="javax.swing.JButton" binding="modificarPuzzle">
                 <constraints>
-                  <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="18" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
                 </constraints>
                 <properties>
@@ -186,7 +188,7 @@
               </component>
               <component id="e0132" class="javax.swing.JButton" binding="eliminarPuzzle">
                 <constraints>
-                  <grid row="18" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="20" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
                 </constraints>
                 <properties>
@@ -195,7 +197,7 @@
               </component>
               <scrollpane id="a67c1">
                 <constraints>
-                  <grid row="14" column="2" row-span="5" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="14" column="2" row-span="7" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                   <forms defaultalign-horz="false" defaultalign-vert="false"/>
                 </constraints>
                 <properties/>
@@ -207,10 +209,21 @@
                   </component>
                 </children>
               </scrollpane>
+              <component id="447e" class="javax.swing.JButton" binding="buscarPuzzle">
+                <constraints>
+                  <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Buscar"/>
+                </properties>
+              </component>
             </children>
           </grid>
-          <grid id="e2ba7" binding="JPanelComprador" layout-manager="FormLayout">
+          <grid id="e2ba7" binding="jPanelComprador" layout-manager="FormLayout">
             <rowspec value="center:d:noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
@@ -316,7 +329,7 @@
               </component>
               <scrollpane id="23bc7">
                 <constraints>
-                  <grid row="10" column="2" row-span="6" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="10" column="2" row-span="8" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                   <forms defaultalign-horz="false" defaultalign-vert="false"/>
                 </constraints>
                 <properties/>
@@ -339,7 +352,7 @@
               </component>
               <component id="306be" class="javax.swing.JButton" binding="eliminarComprador">
                 <constraints>
-                  <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
                 </constraints>
                 <properties>
@@ -348,7 +361,7 @@
               </component>
               <component id="5ba4a" class="javax.swing.JButton" binding="modificarComprador">
                 <constraints>
-                  <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
                 </constraints>
                 <properties>
@@ -373,10 +386,21 @@
                   <text value="DNI"/>
                 </properties>
               </component>
+              <component id="cc7bc" class="javax.swing.JButton" binding="buscarComprador">
+                <constraints>
+                  <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Buscar"/>
+                </properties>
+              </component>
             </children>
           </grid>
-          <grid id="10d13" binding="JPanelEditorial" layout-manager="FormLayout">
+          <grid id="10d13" binding="jPanelEditorial" layout-manager="FormLayout">
             <rowspec value="center:d:noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
@@ -501,7 +525,7 @@
               </component>
               <component id="b6647" class="javax.swing.JButton" binding="modificarEditorial">
                 <constraints>
-                  <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
                 </constraints>
                 <properties>
@@ -510,7 +534,7 @@
               </component>
               <component id="3e1e3" class="javax.swing.JButton" binding="eliminarEditorial">
                 <constraints>
-                  <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="18" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
                 </constraints>
                 <properties>
@@ -519,7 +543,7 @@
               </component>
               <scrollpane id="d630">
                 <constraints>
-                  <grid row="12" column="2" row-span="5" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="12" column="2" row-span="7" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                   <forms defaultalign-horz="false" defaultalign-vert="false"/>
                 </constraints>
                 <properties/>
@@ -548,6 +572,15 @@
                   <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties/>
+              </component>
+              <component id="52569" class="javax.swing.JButton" binding="buscarEditorial">
+                <constraints>
+                  <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <text value="Buscar"/>
+                </properties>
               </component>
             </children>
           </grid>

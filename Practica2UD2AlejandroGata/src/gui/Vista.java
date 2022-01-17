@@ -12,9 +12,9 @@ public class Vista extends JFrame {
     private final static String TITULOFRAME = "Aplicación Varias Tablas";
     private JTabbedPane tabbedPane;
     private JPanel panel1;
-    private JPanel JPanelPuzzle;
-    private JPanel JPanelComprador;
-    private JPanel JPanelEditorial;
+    private JPanel jPanelPuzzle;
+    private JPanel jPanelComprador;
+    private JPanel jPanelEditorial;
 
     //PUZZLES
     JTextField txtTitulo;
@@ -26,6 +26,7 @@ public class Vista extends JFrame {
     JTextField txtPrecio;
     JTable puzzlesTabla;
     JButton anadirPuzzle;
+    JButton buscarPuzzle;
     JButton modificarPuzzle;
     JButton eliminarPuzzle;
 
@@ -36,6 +37,7 @@ public class Vista extends JFrame {
     JTextField txtPais;
     JTable compradoresTabla;
     JButton eliminarComprador;
+    JButton buscarComprador;
     JButton anadirComprador;
     JButton modificarComprador;
 
@@ -47,6 +49,7 @@ public class Vista extends JFrame {
     JTextField txtWeb;
     JTable editorialesTabla;
     JButton eliminarEditorial;
+    JButton buscarEditorial;
     JButton anadirEditorial;
     JButton modificarEditorial;
     JTextField txtAnti;
@@ -77,6 +80,8 @@ public class Vista extends JFrame {
     }
 
     public void initFrame() {
+        this.jPanelPuzzle.setBackground(Color.LIGHT_GRAY);
+        this.panel1.setBackground(Color.LIGHT_GRAY);
         this.setContentPane(panel1);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
@@ -98,6 +103,9 @@ public class Vista extends JFrame {
         this.compradoresTabla.setModel(dtmCompradores);
         this.dtmEditoriales = new DefaultTableModel();
         this.editorialesTabla.setModel(dtmEditoriales);
+        this.compradoresTabla.setBackground(Color.LIGHT_GRAY);
+        this.puzzlesTabla.setBackground(Color.LIGHT_GRAY);
+        this.editorialesTabla.setBackground(Color.LIGHT_GRAY);
     }
 
     private void setMenu() {

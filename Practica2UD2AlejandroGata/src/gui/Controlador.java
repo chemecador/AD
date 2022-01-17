@@ -39,10 +39,16 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
     private void addActionListeners(ActionListener listener) {
         vista.anadirPuzzle.addActionListener(listener);
         vista.anadirPuzzle.setActionCommand("anadirPuzzle");
+        vista.buscarPuzzle.addActionListener(listener);
+        vista.buscarPuzzle.setActionCommand("buscarPuzzle");
         vista.anadirComprador.addActionListener(listener);
         vista.anadirComprador.setActionCommand("anadirComprador");
+        vista.buscarComprador.addActionListener(listener);
+        vista.buscarComprador.setActionCommand("buscarComprador");
         vista.anadirEditorial.addActionListener(listener);
         vista.anadirEditorial.setActionCommand("anadirEditorial");
+        vista.buscarEditorial.addActionListener(listener);
+        vista.buscarEditorial.setActionCommand("buscarEditorial");
         vista.eliminarPuzzle.addActionListener(listener);
         vista.eliminarPuzzle.setActionCommand("eliminarPuzzle");
         vista.eliminarComprador.addActionListener(listener);
@@ -169,6 +175,11 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                 borrarCamposPuzzles();
                 refrescarPuzzles();
                 break;
+            case "buscarPuzzle":
+                modelo.buscarPuzzle(vista.txtTitulo.getText());
+                borrarCamposPuzzles();
+                refrescarPuzzles();
+                break;
             case "modificarPuzzle":
                 try {
                     if (comprobarPuzzleVacio()) {
@@ -222,6 +233,17 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                 borrarCamposCompradores();
             }
             break;
+            case "buscarComprador": {
+                try {
+                    modelo.buscarComprador(vista.txtNombre.getText());
+                    refrescarCompradores();
+                } catch (NumberFormatException nfe) {
+                    Util.showErrorAlert("Introduce números en los campos que lo requieren");
+                    vista.compradoresTabla.clearSelection();
+                }
+                borrarCamposCompradores();
+            }
+            break;
             case "modificarComprador": {
                 try {
                     if (comprobarCompradorVacio()) {
@@ -260,6 +282,17 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                                 vista.txtWeb.getText());
                         refrescarEditorial();
                     }
+                } catch (NumberFormatException nfe) {
+                    Util.showErrorAlert("Introduce números en los campos que lo requieren");
+                    vista.editorialesTabla.clearSelection();
+                }
+                borrarCamposEditoriales();
+            }
+            break;
+            case "buscarEditorial": {
+                try {
+                    modelo.buscarEditorial(vista.txtNombreEditorial.getText());
+                    refrescarEditorial();
                 } catch (NumberFormatException nfe) {
                     Util.showErrorAlert("Introduce números en los campos que lo requieren");
                     vista.editorialesTabla.clearSelection();

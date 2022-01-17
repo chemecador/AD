@@ -192,7 +192,6 @@ public class Modelo {
         }
     }
 
-    /********************************************************************/
     void modificarEditorial(String editorial, String email, String telefono, int antiguedad, String reputacion, String web, int ideditorial) {
 
         String sentenciaSql = "UPDATE editoriales SET editorial = ?, email = ?, telefono = ?, antiguedad = ?, reputacion = ?, web = ?" +
@@ -244,6 +243,60 @@ public class Modelo {
             sentencia.executeUpdate();
         } catch (SQLException sqle) {
             sqle.printStackTrace();
+        } finally {
+            if (sentencia != null)
+                try {
+                    sentencia.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+        }
+    }
+
+    void buscarPuzzle(String titulo) {
+        String sentenciaSql = "SELECT * FROM puzzles WHERE titulo = " + titulo;
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = conexion.prepareStatement(sentenciaSql);
+            sentencia.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (sentencia != null)
+                try {
+                    sentencia.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+        }
+    }
+
+    void buscarComprador(String dni) {
+        String sentenciaSql = "SELECT * FROM compradores WHERE dni = " + dni;
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = conexion.prepareStatement(sentenciaSql);
+            sentencia.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (sentencia != null)
+                try {
+                    sentencia.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+        }
+    }
+
+    void buscarEditorial(String nombre) {
+        String sentenciaSql = "SELECT * FROM editoriales WHERE nombre = " + nombre;
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = conexion.prepareStatement(sentenciaSql);
+            sentencia.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             if (sentencia != null)
                 try {
