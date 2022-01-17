@@ -13,12 +13,20 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Vector;
 
+/***
+ * Clase Controlador
+ */
 public class Controlador implements ActionListener, ItemListener, ListSelectionListener, WindowListener {
     private Modelo modelo;
     private Vista vista;
     private boolean refrescar;
     private boolean existeTabla;
 
+    /***
+     * Constructor
+     * @param vista
+     * @param modelo
+     */
     public Controlador(Vista vista, Modelo modelo) {
         this.modelo = modelo;
         this.vista = vista;
@@ -39,6 +47,10 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         refrescar = false;
     }
 
+    /***
+     * Añadir Listeners
+     * @param listener
+     */
     private void addActionListeners(ActionListener listener) {
         vista.anadirPuzzle.addActionListener(listener);
         vista.anadirPuzzle.setActionCommand("anadirPuzzle");
@@ -195,7 +207,13 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                 break;
             case "buscarPuzzle":
                 try {
-                    vista.puzzlesTabla.setModel(construirTableModelPuzzles(modelo.buscarPuzzle(vista.txtTitulo.getText())));
+                    if (vista.txtIsbn.getText().length() == 0) {
+                        JOptionPane.showMessageDialog(null, "Escribe el ISBN del puzzle que quieres buscar",
+                                "Campo ISBN vacío", JOptionPane.PLAIN_MESSAGE);
+                        refrescarPuzzles();
+                    } else {
+                        vista.puzzlesTabla.setModel(construirTableModelPuzzles(modelo.buscarPuzzle(vista.txtIsbn.getText())));
+                    }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -255,7 +273,13 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
             break;
             case "buscarComprador": {
                 try {
-                    vista.compradoresTabla.setModel(construirTableModeloCompradores(modelo.buscarComprador(vista.txtDni.getText())));
+                    if (vista.txtDni.getText().length() == 0) {
+                        JOptionPane.showMessageDialog(null, "Escribe el DNI del comprador que quieres buscar",
+                                "Campo DNI vacío", JOptionPane.PLAIN_MESSAGE);
+                        refrescarCompradores();
+                    } else {
+                        vista.compradoresTabla.setModel(construirTableModeloCompradores(modelo.buscarComprador(vista.txtDni.getText())));
+                    }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -308,7 +332,13 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
             break;
             case "buscarEditorial": {
                 try {
-                    vista.editorialesTabla.setModel(construirTableModelEditoriales(modelo.buscarEditorial(vista.txtNombreEditorial.getText())));
+                    if (vista.txtDni.getText().length() == 0) {
+                        JOptionPane.showMessageDialog(null, "Escribe el nombre de la editorial que quieres buscar",
+                                "El nombre de la editorial está vacío", JOptionPane.PLAIN_MESSAGE);
+                        refrescarEditorial();
+                    } else {
+                        vista.editorialesTabla.setModel(construirTableModelEditoriales(modelo.buscarEditorial(vista.txtNombreEditorial.getText())));
+                    }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }

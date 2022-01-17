@@ -8,6 +8,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
+/***
+ * Clase Vista
+ */
 public class Vista extends JFrame {
     private final static String TITULOFRAME = "Aplicación Varias Tablas";
     private JTabbedPane tabbedPane;
@@ -76,11 +79,17 @@ public class Vista extends JFrame {
     JButton btnValidate;
     JPasswordField adminPassword;
 
+    /***
+     * Constructor
+     */
     public Vista() {
         super(TITULOFRAME);
         initFrame();
     }
 
+    /***
+     * Iniciar la ventana
+     */
     public void initFrame() {
         this.jPanelPuzzle.setBackground(Color.LIGHT_GRAY);
         this.panel1.setBackground(Color.LIGHT_GRAY);
@@ -98,6 +107,9 @@ public class Vista extends JFrame {
         setTableModels();
     }
 
+    /***
+     * Establecer los TableModels
+     */
     private void setTableModels() {
         this.dtmPuzzles = new DefaultTableModel();
         this.puzzlesTabla.setModel(dtmPuzzles);
@@ -110,6 +122,9 @@ public class Vista extends JFrame {
         this.editorialesTabla.setBackground(Color.LIGHT_GRAY);
     }
 
+    /***
+     * Establecer el menú
+     */
     private void setMenu() {
         JMenuBar mbBar = new JMenuBar();
         JMenu menu = new JMenu("Archivo");
@@ -135,6 +150,9 @@ public class Vista extends JFrame {
         this.setJMenuBar(mbBar);
     }
 
+    /***
+     * Establecer los ComboBox
+     */
     private void setEnumComboBox() {
         for (Reputacion constant : Reputacion.values()) {
             comboRepu.addItem(constant.getValor());
@@ -145,7 +163,9 @@ public class Vista extends JFrame {
         }
         comboGenero.setSelectedIndex(-1);
     }
-
+    /***
+     * Establecer el cuadro de diálogo de administrador
+     */
     private void setAdminDialog() {
         btnValidate = new JButton("Validar");
         btnValidate.setActionCommand("abrirOpciones");

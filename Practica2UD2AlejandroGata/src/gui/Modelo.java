@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.Properties;
 
 /**
- * Created by DAM on 13/12/2021.
+ * Clase Modelo
  */
 public class Modelo {
     private String ip;
@@ -37,6 +37,10 @@ public class Modelo {
 
     private Connection conexion;
 
+    /***
+     * Conectar con la BBDD
+     * @return
+     */
     boolean conectar() {
         try {
             conexion = DriverManager.getConnection("jdbc:mysql://"
@@ -44,12 +48,17 @@ public class Modelo {
             return true;
         } catch (SQLException e) {
 
-            JOptionPane.showMessageDialog(null,"Puedes crearla desde el menú opciones",
-                    "No se ha encontrado la base de datos",JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Puedes crearla desde el menú opciones",
+                    "No se ha encontrado la base de datos", JOptionPane.PLAIN_MESSAGE);
             return false;
         }
     }
-    boolean crearBBDD(){
+
+    /***
+     * Crear la BBDD
+     * @return
+     */
+    boolean crearBBDD() {
         try {
             conexion = DriverManager.getConnection("jdbc:mysql://"
                     + ip + ":3307/", user, password);
@@ -71,7 +80,12 @@ public class Modelo {
         }
         return false;
     }
-    boolean borrarBBDD(){
+
+    /***
+     * Borrar la BBDD
+     * @return
+     */
+    boolean borrarBBDD() {
 
         String sentenciaSql = "DROP DATABASE tiendapuzzles";
         PreparedStatement sentencia = null;
@@ -94,6 +108,12 @@ public class Modelo {
         }
         return false;
     }
+
+    /***
+     * Leer el fichero con el script
+     * @return
+     * @throws IOException
+     */
     private String leerFichero() throws IOException {
         //basedatos_java no tiene delimitador
         //StringBuilder es dinamica
@@ -108,6 +128,9 @@ public class Modelo {
         }
     }
 
+    /***
+     * Desconectar de la BBDD
+     */
     void desconectar() {
         try {
             conexion.close();
@@ -117,6 +140,9 @@ public class Modelo {
         }
     }
 
+    /***
+     * Insertar Comprador
+     */
     void insertarComprador(String nombre, String apellidos, String dni, LocalDate fechaCompra, String pais) {
         String sentenciaSql = "INSERT INTO compradores (nombre, apellidos, dni, fechacompra, pais)" +
                 "VALUES (?,?,?,?,?)";
@@ -144,6 +170,9 @@ public class Modelo {
 
     }
 
+    /***
+     * Insertar editorial
+     */
     void insertarEditorial(String editorial, String email, String telefono, int antiguedad, String reputacion, String web) {
         String sentenciaSql = "INSERT INTO editoriales (editorial, email, telefono, antiguedad, reputacion, web) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement sentencia = null;
@@ -169,6 +198,9 @@ public class Modelo {
         }
     }
 
+    /***
+     * Insertar puzzle
+     */
     void insertarPuzzle(String titulo, String isbn, String editorial, String genero, String comprador,
                         float precio, LocalDate fechaEdicion) {
         String sentenciaSql = "INSERT INTO puzzles (titulo, isbn, ideditorial, genero, idcomprador, precio, fechaedicion) " +
@@ -225,6 +257,9 @@ public class Modelo {
         }
     }
 
+    /***
+     * Modificar editorial
+     */
     void modificarEditorial(String editorial, String email, String telefono, int antiguedad, String reputacion, String web, int ideditorial) {
 
         String sentenciaSql = "UPDATE editoriales SET editorial = ?, email = ?, telefono = ?, antiguedad = ?, reputacion = ?, web = ?" +
@@ -253,6 +288,9 @@ public class Modelo {
         }
     }
 
+    /***
+     * Modificar puzzle
+     */
     void modificarPuzzle(String titulo, String isbn, String editorial, String genero, String comprador,
                          float precio, LocalDate fechaEdicion, int idpuzzle) {
 
@@ -286,10 +324,14 @@ public class Modelo {
         }
     }
 
-    ResultSet buscarPuzzle(String isbn) {
+    /***
+     * Buscar puzzle
+     */
+    ResultSet buscarPuzzle(String isbnBuscar) {
         try {
-            String consulta = "SELECT * FROM puzzles WHERE isbn = " + isbn;
+            String consulta = "SELECT * FROM puzzles WHERE isbn = ?";
             PreparedStatement sentencia = conexion.prepareStatement(consulta);
+            sentencia.setString(1, isbnBuscar);
             return sentencia.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -297,10 +339,14 @@ public class Modelo {
         return null;
     }
 
+    /***
+     * Buscar Comprador
+     */
     ResultSet buscarComprador(String dni) {
         try {
-            String consulta = "SELECT * FROM compradores WHERE dni = " + dni;
+            String consulta = "SELECT * FROM compradores WHERE dni = ?";
             PreparedStatement sentencia = conexion.prepareStatement(consulta);
+            sentencia.setString(1, dni);
             return sentencia.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -308,10 +354,14 @@ public class Modelo {
         return null;
     }
 
-    ResultSet buscarEditorial(String nombre) {
+    /***
+     * Buscar editorial
+     */
+    ResultSet buscarEditorial(String nombreEdit) {
         try {
-            String consulta = "SELECT * FROM editoriales WHERE nombre = " + nombre;
+            String consulta = "SELECT * FROM editoriales WHERE editorial = ?";
             PreparedStatement sentencia = conexion.prepareStatement(consulta);
+            sentencia.setString(1, nombreEdit);
             return sentencia.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -319,6 +369,9 @@ public class Modelo {
         return null;
     }
 
+    /***
+     * Borrar editorial
+     */
     void borrarEditorial(int ideditorial) {
         String sentenciaSql = "DELETE FROM editoriales WHERE ideditorial=?";
         PreparedStatement sentencia = null;
@@ -338,6 +391,9 @@ public class Modelo {
         }
     }
 
+    /***
+     * Borrar Comprador
+     */
     void borrarComprador(int idcomprador) {
         String sentenciaSql = "DELETE FROM compradores WHERE idcomprador = ?";
         PreparedStatement sentencia = null;
@@ -358,6 +414,9 @@ public class Modelo {
         }
     }
 
+    /***
+     * Borrar puzzle
+     */
     void borrarPuzzle(int idpuzzle) {
         String sentenciaSql = "DELETE FROM puzzles WHERE idpuzzle = ?";
         PreparedStatement sentencia = null;
@@ -378,6 +437,9 @@ public class Modelo {
         }
     }
 
+    /***
+     * Mostrar todas las editoriales
+     */
     ResultSet consultarEditorial() throws SQLException {
         String sentenciaSql = "SELECT concat(ideditorial) AS 'ID', concat(editorial) AS 'Nombre editorial', " +
                 "concat(email) AS 'email', concat(telefono) AS 'Teléfono'," +
@@ -390,6 +452,9 @@ public class Modelo {
         return resultado;
     }
 
+    /***
+     * Mostrar todos los compradores
+     */
     ResultSet consultarComprador() throws SQLException {
         String sentenciaSql = "SELECT concat(idcomprador) AS 'ID', concat(nombre) AS 'Nombre', concat(apellidos) AS 'Apellidos', " +
                 "concat(dni) AS 'DNI', " +
@@ -401,6 +466,9 @@ public class Modelo {
         return resultado;
     }
 
+    /***
+     * Mostrar todos los puzzles
+     */
     ResultSet consultarPuzzles() throws SQLException {
         String sentenciaSql = "SELECT concat(b.idpuzzle) AS 'ID', concat(b.titulo) AS 'Título', concat(b.isbn) AS 'ISBN', " +
                 "concat(e.ideditorial, ' - ', e.editorial) AS 'Editorial', concat(b.genero) AS 'Género', " +
@@ -416,7 +484,9 @@ public class Modelo {
         return resultado;
     }
 
-    //usamos los datos del cuadro de dialogo
+    /***
+     * Usar datos del cuadro de diálogo
+     */
     private void getPropValues() {
         InputStream inputStream = null;
         try {
@@ -440,6 +510,9 @@ public class Modelo {
         }
     }
 
+    /***
+     * Establecer los datos del cuadro de diálogo
+     */
     void setPropValues(String ip, String user, String pass, String adminPass) {
         try {
             Properties prop = new Properties();
@@ -458,7 +531,9 @@ public class Modelo {
         this.adminPassword = adminPass;
     }
 
-    //comprobaciones llamando a funciones de sql
+    /***
+     * Comprobaciones llamando a funciones de sql
+     */
     public boolean puzzleIsbnYaExiste(String isbn) {
         String consulta = "SELECT existeIsbn(?)";
         PreparedStatement function;
@@ -475,6 +550,9 @@ public class Modelo {
         return isbnExists;
     }
 
+    /***
+     * Comprobaciones llamando a funciones de sql
+     */
     public boolean editorialNombreYaExiste(String nombre) {
         String editorialNameConsult = "SELECT existeNombreEditorial(?)";
         PreparedStatement function;
@@ -492,6 +570,9 @@ public class Modelo {
         return nameExists;
     }
 
+    /***
+     * Comprobaciones llamando a funciones de sql
+     */
     public boolean compradorNombreYaExiste(String nombre, String apellidos) {
         String completeName = apellidos + ", " + nombre;
         String authorNameConsult = "SELECT existeNombreComprador(?)";

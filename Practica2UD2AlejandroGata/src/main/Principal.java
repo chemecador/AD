@@ -5,9 +5,13 @@ import gui.Modelo;
 import gui.Vista;
 
 /**
- * Created by DAM on 13/12/2021.
+ * Clase principal
  */
 public class Principal {
+    /***
+     * Método principal
+     * @param args
+     */
     public static void main(String[] args) {
         Vista vista = new Vista();
         Modelo modelo = new Modelo();
