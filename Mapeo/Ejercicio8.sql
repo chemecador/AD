@@ -1,0 +1,59 @@
+CREATE DATABASE IF NOT EXISTS ejercicio8;
+USE ejercicio8;
+
+CREATE TABLE IF NOT EXISTS usuarios 
+(
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	login VARCHAR(50) NOT NULL UNIQUE,
+	password VARCHAR(50) NOT NULL,
+	nif VARCHAR(10) NOT NULL UNIQUE,
+	email VARCHAR(50),
+	nombre VARCHAR(50),
+	direccion VARCHAR(50),
+	telefono VARCHAR(20)
+);
+CREATE TABLE IF NOT EXISTS secciones
+(
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	codigo VARCHAR(50) UNIQUE NOT NULL,
+	nombre VARCHAR(50) NOT NULL,
+	descripcion VARCHAR(500),
+	fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+);
+CREATE TABLE IF NOT EXISTS carritos
+(
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+	precio_total FLOAT DEFAULT 0,
+	finalizado BOOLEAN DEFAULT FALSE,
+	id_usuario INT UNSIGNED NOT NULL REFERENCES usuarios
+);
+CREATE TABLE IF NOT EXISTS productos
+(
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	codigo VARCHAR(10) UNIQUE NOT NULL,
+	nombre VARCHAR(50) NOT NULL,
+	descripcion VARCHAR(500),
+	precio FLOAT DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS usuario_seccion
+(
+	id_usuario INT UNSIGNED REFERENCES usuarios,
+	id_seccion INT UNSIGNED REFERENCES secciones,
+	fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+	PRIMARY KEY (id_usuario, id_seccion)
+);
+CREATE TABLE IF NOT EXISTS seccion_producto
+(
+	id_seccion INT UNSIGNED REFERENCES secciones,
+	id_producto INT UNSIGNED REFERENCES productos,
+	PRIMARY KEY (id_seccion, id_producto)
+);
+CREATE TABLE IF NOT EXISTS carrito_producto
+(
+	id_carrito INT UNSIGNED REFERENCES carritos,
+	id_producto INT UNSIGNED REFERENCES productos,
+	cantidad INTEGER DEFAULT 0,
+	precio FLOAT DEFAULT 0,
+	PRIMARY KEY (id_carrito, id_producto)
+);
