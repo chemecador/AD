@@ -8,12 +8,6 @@ idcoleccion int auto_increment primary key,
 cantidad int not null,
 valor float not null);
 --
-create table if not exists tienda(
-idtienda int auto_increment primary key,
-nombre varchar(40) not null,
-direccion varchar(150) not null,
-telefono varchar(9));
---
 create table if not exists editorial (
 ideditorial int auto_increment primary key,
 editorial varchar(50) not null,
@@ -23,11 +17,18 @@ antiguedad int,
 reputacion varchar(10),
 web varchar(500));
 --
+create table if not exists dependiente(
+iddependiente int auto_increment primary key,
+nombre varchar(50),
+apellidos varchar(50));
+--
 create table if not exists tienda(
 idtienda int auto_increment primary key,
 nombre varchar(50) not null, 
 direccion varchar(100) not null,
-telefono varchar(9));
+telefono varchar(9),
+iddependiente int,
+foreign key (iddependiente) references dependiente(iddependiente));
 --
 create table if not exists comprador(
 idcomprador int auto_increment primary key,
@@ -55,25 +56,25 @@ foreign key(idcomprador) references comprador(idcomprador),
 foreign key(idtienda) references tienda(idtienda));
 --
 create table if not exists comprador_puzzle(
+idcompradorpuzzle int auto_increment primary key,
 idcomprador int,
 idpuzzle int,
 preciopuzzle int,
-fechacompra date,
-primary key(idcomprador,idpuzzle));
+fechacompra date);
 -- 
 create table if not exists puzzle_tienda(
+idpuzzletienda int auto_increment primary key,
 idpuzzle int,
 idtienda int,
 precio int,
-fechaventa date,
-primary key(idpuzzle, idtienda));
+fechaventa date);
 -- 
 create table if not exists comprador_tienda(
+idcompradortienda int auto_increment primary key,
 idcomprador int,
 idtienda int,
 preciototal int,
-fechavisita date,
-primary key(idcomprador, idtienda));
+fechavisita date);
 --
 delimiter ||
 create function existeIsbn(f_isbn varchar(40))
