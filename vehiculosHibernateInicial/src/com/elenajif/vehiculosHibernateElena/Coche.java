@@ -79,4 +79,17 @@ public class Coche implements Serializable{
         this.fechaMatriculacion = fechaMatriculacion;
     }
 
+    public Coche(String matricula, String marca, String modelo, Timestamp fechaMatriculacion, Propietario propietario) {
+        this.matricula = matricula;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.fechaMatriculacion = fechaMatriculacion;
+        this.propietario = propietario;
+    }
+
+    @Override
+    public String toString() {
+        return "matricula='" + matricula + '\'' +
+                ", marca='" + marca + '\'';
+    }
 }

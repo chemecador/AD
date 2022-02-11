@@ -63,4 +63,15 @@ public class Propietario {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public Propietario(String nombre, String apellidos, Date fechaNacimiento) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    @Override
+    public String toString() {
+        return "nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'';
+    }
 }
