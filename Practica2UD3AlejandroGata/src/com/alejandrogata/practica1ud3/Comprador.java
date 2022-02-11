@@ -17,7 +17,6 @@ public class Comprador {
     private Date fechacompra;
     private List<Tienda> tiendas;
     private List<Puzzle> puzzles;
-    private Coleccion coleccion;
 
     @Id
     @Column(name = "idcomprador")
@@ -103,15 +102,5 @@ public class Comprador {
 
     public void setPuzzles(List<Puzzle> puzzles) {
         this.puzzles = puzzles;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "idcoleccion", referencedColumnName = "idcoleccion")
-    public Coleccion getColeccion() {
-        return coleccion;
-    }
-
-    public void setColeccion(Coleccion coleccion) {
-        this.coleccion = coleccion;
     }
 }

@@ -14,7 +14,6 @@ public class Tienda {
     private String direccion;
     private String telefono;
     private List<Comprador> compradores;
-    private List<Dependiente> dependientes;
     private List<Puzzle> puzzles;
 
     @Id
@@ -80,15 +79,6 @@ public class Tienda {
 
     public void setCompradores(List<Comprador> compradores) {
         this.compradores = compradores;
-    }
-
-    @OneToMany(mappedBy = "tienda")
-    public List<Dependiente> getDependientes() {
-        return dependientes;
-    }
-
-    public void setDependientes(List<Dependiente> dependientes) {
-        this.dependientes = dependientes;
     }
 
     @ManyToMany
