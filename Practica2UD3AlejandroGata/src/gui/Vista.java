@@ -10,25 +10,26 @@ public class Vista extends JFrame{
     private JPanel panel1;
 
     JTextField txtId;
-    JTextField txtMatricula;
-    JTextField txtMarca;
+    JTextField txtEditorial;
     JTextField txtModelo;
-    JTextField txtPropietario;
+    JTextField txtIsbn;
+    JTextField txtPrecio;
+    JTextField txtComprador;
     DateTimePicker dateTimePicker;
 
     JButton altaButton;
     JButton listarButton;
     JButton modificarButton;
     JButton borrarButton;
-    JButton listarPropietariosButton;
+    JButton listarCompradoresButton;
 
-    JList listCoches;
-    JList listPropietarios;
-    JList listCochesPropietario;
+    JList listPuzzles;
+    JList listPuzzlesCompradores;
+    JList listCompradores;
 
     DefaultListModel dlm;
-    DefaultListModel dlmPropietarios;
-    DefaultListModel dlmCochesPropietario;
+    DefaultListModel dlmCompradores;
+    DefaultListModel dlmPuzzlesCompradores;
 
     JMenuItem conexionItem;
     JMenuItem salirItem;
@@ -49,11 +50,11 @@ public class Vista extends JFrame{
 
     private void crearModelos() {
         dlm = new DefaultListModel();
-        listCoches.setModel(dlm);
-        dlmPropietarios = new DefaultListModel();
-        listPropietarios.setModel(dlmPropietarios);
-        dlmCochesPropietario = new DefaultListModel();
-        listCochesPropietario.setModel(dlmCochesPropietario);
+        listPuzzles.setModel(dlm);
+        dlmCompradores = new DefaultListModel();
+        listCompradores.setModel(dlmCompradores);
+        dlmPuzzlesCompradores = new DefaultListModel();
+        listPuzzlesCompradores.setModel(dlmPuzzlesCompradores);
     }
 
     private void crearMenu() {

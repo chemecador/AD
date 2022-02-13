@@ -1,5 +1,8 @@
 package gui;
 
+import com.alejandrogata.practica1ud3.Comprador;
+import com.alejandrogata.practica1ud3.Puzzle;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
@@ -27,72 +30,67 @@ public class Controlador implements ActionListener, ListSelectionListener{
 
         switch(comando){
             case "Salir":
-                //modelo.desconectar();
+                modelo.desconectar();
                 System.exit(0);
                 break;
             case "Conectar":
                 vista.conexionItem.setEnabled(false);
-                //modelo.conectar();
+                modelo.conectar();
                 break;
 
             case "Alta":
-                /*Coche nuevoCoche = new  Coche();
-                nuevoCoche.setMatricula(vista.txtMatricula.getText());
-                nuevoCoche.setMarca(vista.txtMarca.getText());
-                nuevoCoche.setModelo(vista.txtModelo.getText());
-                nuevoCoche.setFechaMatriculacion(Timestamp.valueOf(vista.dateTimePicker.getDateTimePermissive()));
-                modelo.altaCoche(nuevoCoche);*/
+                Puzzle nuevoPuzzle = new Puzzle();
+                nuevoPuzzle.setIsbn(vista.txtIsbn.getText());
+                nuevoPuzzle.setPrecio(Double.parseDouble(vista.txtPrecio.getText()));
+                modelo.altaPuzzle(nuevoPuzzle);
                 break;
 
             case "Listar":
-                //listarCoches(modelo.getCoches());
+                listarPuzzles(modelo.getPuzzles());
                 break;
 
             case "Modificar":
-                /*Coche cocheSeleccion = (Coche)vista.listCoches.getSelectedValue();
-                cocheSeleccion.setModelo(vista.txtModelo.getText());
-                cocheSeleccion.setMarca(vista.txtMarca.getText());
-                cocheSeleccion.setMatricula(vista.txtMatricula.getText());
-                cocheSeleccion.setFechaMatriculacion(Timestamp.valueOf(vista.dateTimePicker.getDateTimePermissive()));
-                cocheSeleccion.setPropietario((Propietario)vista.listPropietarios.getSelectedValue());
-                System.out.println((Propietario)vista.listPropietarios.getSelectedValue());
-                modelo.modificar(cocheSeleccion);*/
+                Puzzle puzzleSeleccion = (Puzzle)vista.listPuzzles.getSelectedValue();
+                puzzleSeleccion.setIsbn(vista.txtIsbn.getText());
+                puzzleSeleccion.setPrecio(Double.parseDouble(vista.txtPrecio.getText()));
+                System.out.println((Comprador)vista.listCompradores.getSelectedValue());
+                modelo.modificar(puzzleSeleccion);
                 break;
 
             case "Borrar":
-                /*Coche cocheBorrado  = (Coche)vista.listCoches.getSelectedValue();
-                modelo.borrar(cocheBorrado);*/
+                Puzzle puzzleBorrado  = (Puzzle)vista.listPuzzles.getSelectedValue();
+                modelo.borrar(puzzleBorrado);
                 break;
             case "ListarPropietarios":
-                //listarPropietarios(modelo.getPropietarios());
+                listarCompradores(modelo.getPropietarios());
                 break;
 
 
         }
 
-        //listarCoches(modelo.getCoches());
+        listarPuzzles(modelo.getPuzzles());
     }
 
-    /*private void listarPropietarios(ArrayList<Propietario> propietarios) {
-        vista.dlmPropietarios.clear();
-        for(Propietario propietario : propietarios){
-            vista.dlmPropietarios.addElement(propietario);
+    private void listarCompradores(ArrayList<Comprador> compradores) {
+        vista.dlmCompradores.clear();
+        for(Comprador comprador : compradores){
+            vista.dlmCompradores.addElement(comprador);
         }
     }
 
-    public void listarCoches(ArrayList<Coche> lista){
+    public void listarPuzzles(ArrayList<Puzzle> lista){
         vista.dlm.clear();
-        for(Coche uncoche : lista){
-            vista.dlm.addElement(uncoche);
+        for(Puzzle unPuzzle : lista){
+            vista.dlm.addElement(unPuzzle);
         }
     }
 
-    public void listarCochesPropietario(List<Coche> lista){
-        vista.dlmCochesPropietario.clear();
-        for(Coche uncoche : lista){
-            vista.dlmCochesPropietario.addElement(uncoche);
+    public void listarPuzzlesCompradores(List<Puzzle> lista){
+        vista.dlmPuzzlesCompradores.clear();
+        for(Puzzle unPuzzle : lista){
+            vista.dlmPuzzlesCompradores.addElement(unPuzzle);
         }
-    }*/
+    }
 
     private void addActionListeners(ActionListener listener){
         vista.conexionItem.addActionListener(listener);
@@ -101,36 +99,33 @@ public class Controlador implements ActionListener, ListSelectionListener{
         vista.borrarButton.addActionListener(listener);
         vista.modificarButton.addActionListener(listener);
         vista.listarButton.addActionListener(listener);
-        vista.listarPropietariosButton.addActionListener(listener);
+        vista.listarCompradoresButton.addActionListener(listener);
     }
 
     private void addListSelectionListener(ListSelectionListener listener){
-        vista.listCoches.addListSelectionListener(listener);
-        vista.listPropietarios.addListSelectionListener(listener);
+        vista.listPuzzles.addListSelectionListener(listener);
+        vista.listCompradores.addListSelectionListener(listener);
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if(e.getValueIsAdjusting()){
-            /*if(e.getSource() == vista.listCoches) {
-                Coche cocheSeleccion = (Coche) vista.listCoches.getSelectedValue();
-                vista.txtId.setText(String.valueOf(cocheSeleccion.getId()));
-                vista.txtMarca.setText(cocheSeleccion.getMarca());
-                vista.txtMatricula.setText(cocheSeleccion.getMatricula());
-                vista.txtModelo.setText(cocheSeleccion.getModelo());
-                vista.dateTimePicker.setDateTimePermissive(cocheSeleccion.getFechaMatriculacion().toLocalDateTime());
-                if (cocheSeleccion.getPropietario() != null) {
-                    vista.txtPropietario.setText(cocheSeleccion.getPropietario().toString());
+            if(e.getSource() == vista.listPuzzles) {
+                Puzzle puzzleSeleccion = (Puzzle) vista.listPuzzles.getSelectedValue();
+                vista.txtIsbn.setText(String.valueOf(puzzleSeleccion.getIsbn()));
+                vista.txtPrecio.setText(String.valueOf(puzzleSeleccion.getPrecio()));
+                if (puzzleSeleccion.getCompradores() != null) {
+                    vista.txtComprador.setText(puzzleSeleccion.getCompradores().toString());
                 } else {
-                    vista.txtPropietario.setText("");
+                    vista.txtComprador.setText("");
                 }
             }else{
-                if(e.getSource() == vista.listPropietarios){
-                    Propietario propietarioSeleccionado = (Propietario)vista.listPropietarios.getSelectedValue();
-                    listarCochesPropietario(modelo.getCochesPropietario(propietarioSeleccionado));
+                if(e.getSource() == vista.listCompradores){
+                    Comprador compradorSeleccionado = (Comprador) vista.listCompradores.getSelectedValue();
+                    listarPuzzlesCompradores(modelo.getPuzzlesComprador(compradorSeleccionado));
                 }
             }
-        */}
+        }
     }
 }
 

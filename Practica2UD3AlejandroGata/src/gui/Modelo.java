@@ -1,5 +1,9 @@
 package gui;
 
+import com.alejandrogata.practica1ud3.Comprador;
+import com.alejandrogata.practica1ud3.Editorial;
+import com.alejandrogata.practica1ud3.Puzzle;
+import com.alejandrogata.practica1ud3.Tienda;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -25,8 +29,10 @@ public class Modelo {
         configuracion.configure("hibernate.cfg.xml");
 
         //Indico la clase mapeada con anotaciones
-        //configuracion.addAnnotatedClass(Coche.class);
-        //configuracion.addAnnotatedClass(Propietario.class);
+        configuracion.addAnnotatedClass(Puzzle.class);
+        configuracion.addAnnotatedClass(Comprador.class);
+        configuracion.addAnnotatedClass(Editorial.class);
+        configuracion.addAnnotatedClass(Tienda.class);
 
         //Creamos un objeto ServiceRegistry a partir de los parámetros de configuración
         //Esta clase se usa para gestionar y proveer de acceso a servicios
@@ -38,55 +44,55 @@ public class Modelo {
 
     }
 
-    /*public void altaCoche(Coche nuevoCoche) {
+    public void altaPuzzle(Puzzle nuevoPuzzle) {
         //Obtengo una session a partir de la factoria de sesiones
         Session sesion = sessionFactory.openSession();
 
         sesion.beginTransaction();
-        sesion.save(nuevoCoche);
+        sesion.save(nuevoPuzzle);
         sesion.getTransaction().commit();
 
         sesion.close();
     }
 
-    public ArrayList<Coche> getCoches() {
+    public ArrayList<Puzzle> getPuzzles() {
         Session sesion = sessionFactory.openSession();
-        Query query = sesion.createQuery("FROM Coche");
-        ArrayList<Coche> lista = (ArrayList<Coche>)query.getResultList();
+        Query query = sesion.createQuery("FROM Puzzle");
+        ArrayList<Puzzle> lista = (ArrayList<Puzzle>)query.getResultList();
         sesion.close();
         return lista;
     }
 
-    public void modificar(Coche cocheSeleccion) {
+    public void modificar(Puzzle puzzleSeleccion) {
         Session sesion = sessionFactory.openSession();
         sesion.beginTransaction();
-        sesion.saveOrUpdate(cocheSeleccion);
+        sesion.saveOrUpdate(puzzleSeleccion);
         sesion.getTransaction().commit();
         sesion.close();
     }
 
-    public void borrar(Coche cocheBorrado) {
+    public void borrar(Puzzle puzzleBorrado) {
         Session sesion = sessionFactory.openSession();
         sesion.beginTransaction();
-        sesion.delete(cocheBorrado);
+        sesion.delete(puzzleBorrado);
         sesion.getTransaction().commit();
         sesion.close();
     }
 
-    public ArrayList<Propietario> getPropietarios() {
+    public ArrayList<Comprador> getPropietarios() {
         Session sesion = sessionFactory.openSession();
         Query query = sesion.createQuery("FROM Propietario");
-        ArrayList<Propietario> listaPropietarios = (ArrayList<Propietario>)query.getResultList();
+        ArrayList<Comprador> listaCompradores = (ArrayList<Comprador>)query.getResultList();
         sesion.close();
-        return listaPropietarios;
+        return listaCompradores;
     }
 
-    public ArrayList<Coche> getCochesPropietario(Propietario propietarioSeleccionado) {
+    public ArrayList<Puzzle> getPuzzlesComprador(Comprador compradorSeleccionado) {
         Session sesion = sessionFactory.openSession();
-        Query query = sesion.createQuery("FROM Coche WHERE propietario = :prop");
-        query.setParameter("prop", propietarioSeleccionado);
-        ArrayList<Coche> lista = (ArrayList<Coche>) query.getResultList();
+        Query query = sesion.createQuery("FROM puzzle WHERE comprador = :prop");
+        query.setParameter("prop", compradorSeleccionado);
+        ArrayList<Puzzle> lista = (ArrayList<Puzzle>) query.getResultList();
         sesion.close();
         return lista;
-    }*/
+    }
 }

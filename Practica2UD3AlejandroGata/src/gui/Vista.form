@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.elenajif.vehiculosHibernate1Elena.gui.Vista">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.Vista">
   <grid id="27dc6" binding="panel1" layout-manager="FormLayout">
     <rowspec value="center:d:noGrow"/>
     <rowspec value="top:4dlu:noGrow"/>
@@ -43,7 +43,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Id"/>
+          <text value="ID"/>
         </properties>
       </component>
       <component id="5928d" class="javax.swing.JLabel">
@@ -52,7 +52,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Marca"/>
+          <text value="Editorial"/>
         </properties>
       </component>
       <component id="130e1" class="javax.swing.JLabel">
@@ -61,7 +61,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Modelo"/>
+          <text value="Precio"/>
         </properties>
       </component>
       <component id="ebe88" class="javax.swing.JLabel">
@@ -70,7 +70,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Propietario"/>
+          <text value="Comprador"/>
         </properties>
       </component>
       <component id="79979" class="javax.swing.JTextField" binding="txtId">
@@ -102,16 +102,18 @@
           <text value="ISBN"/>
         </properties>
       </component>
-      <component id="5e856" class="javax.swing.JTextField" binding="txtMarca">
+      <component id="5e856" class="javax.swing.JTextField" binding="txtEditorial">
         <constraints>
           <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <forms defaultalign-horz="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
-      <component id="851c1" class="javax.swing.JTextField" binding="txtModelo">
+      <component id="851c1" class="javax.swing.JTextField" binding="txtPrecio">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -120,7 +122,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="8121" class="javax.swing.JTextField" binding="txtPropietario">
+      <component id="8121" class="javax.swing.JTextField" binding="txtComprador">
         <constraints>
           <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -135,7 +137,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Fecha matriculación"/>
+          <text value="Fecha compra"/>
         </properties>
       </component>
       <component id="2fa21" class="javax.swing.JButton" binding="altaButton">
@@ -153,7 +155,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Listar Coches"/>
+          <text value="Listar Puzzles"/>
         </properties>
       </component>
       <component id="c8b69" class="javax.swing.JButton" binding="modificarButton" default-binding="true">
@@ -182,13 +184,15 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="efe95" class="javax.swing.JList" binding="listCoches">
+          <component id="efe95" class="javax.swing.JList" binding="listPuzzles">
             <constraints/>
-            <properties/>
+            <properties>
+              <model/>
+            </properties>
           </component>
         </children>
       </scrollpane>
-      <component id="f7374" class="javax.swing.JButton" binding="listarPropietariosButton" default-binding="true">
+      <component id="f7374" class="javax.swing.JButton" binding="listarCompradoresButton">
         <constraints>
           <grid row="22" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <forms/>
@@ -205,9 +209,11 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="78fa0" class="javax.swing.JList" binding="listPropietarios">
+          <component id="78fa0" class="javax.swing.JList" binding="listCompradores">
             <constraints/>
-            <properties/>
+            <properties>
+              <model/>
+            </properties>
           </component>
         </children>
       </scrollpane>
@@ -224,7 +230,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="c8fb0" class="javax.swing.JList" binding="listCochesPropietario">
+              <component id="c8fb0" class="javax.swing.JList" binding="listPuzzlesCompradores">
                 <constraints/>
                 <properties/>
               </component>
@@ -245,7 +251,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Propietarios"/>
+          <text value="Comprador"/>
         </properties>
       </component>
       <component id="b0c67" class="javax.swing.JLabel">
@@ -254,7 +260,7 @@
           <forms/>
         </constraints>
         <properties>
-          <text value="Coches del Propietario"/>
+          <text value="Puzzles del comprador"/>
         </properties>
       </component>
     </children>
