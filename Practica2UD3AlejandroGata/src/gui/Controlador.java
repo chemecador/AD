@@ -1,23 +1,25 @@
 package gui;
 
-import com.alejandrogata.practica1ud3.Comprador;
-import com.alejandrogata.practica1ud3.Puzzle;
+import com.alejandrogata.practica2ud3.*;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controlador implements ActionListener, ListSelectionListener{
     private Vista vista;
     private Modelo modelo;
+    private boolean conectado;
 
     public Controlador(Modelo modelo, Vista vista) {
         this.vista = vista;
         this.modelo = modelo;
+        this.conectado = false;
 
         addActionListeners(this);
         addListSelectionListener(this);
@@ -26,8 +28,15 @@ public class Controlador implements ActionListener, ListSelectionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         String comando = e.getActionCommand();
 
+        if (!conectado && !comando.equalsIgnoreCase("Conectar")){
+            JOptionPane.showMessageDialog(null, "No has conectado con la BBDD",
+                    "Error de conexión", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        System.out.println("Comando vale " + comando);
         switch(comando){
             case "Salir":
                 modelo.desconectar();
@@ -36,10 +45,13 @@ public class Controlador implements ActionListener, ListSelectionListener{
             case "Conectar":
                 vista.conexionItem.setEnabled(false);
                 modelo.conectar();
+                conectado = true;
                 break;
 
-            case "Alta":
+            case "nuevoPuzzleBtn":
+                System.out.println("ENTRO EN NUEVO PUZZLE");
                 Puzzle nuevoPuzzle = new Puzzle();
+                nuevoPuzzle.setTitulo(vista.txtTitulo.getText());
                 nuevoPuzzle.setIsbn(vista.txtIsbn.getText());
                 nuevoPuzzle.setPrecio(Double.parseDouble(vista.txtPrecio.getText()));
                 modelo.altaPuzzle(nuevoPuzzle);
@@ -57,14 +69,16 @@ public class Controlador implements ActionListener, ListSelectionListener{
                 modelo.modificar(puzzleSeleccion);
                 break;
 
-            case "Borrar":
+            case "eliminarPuzzleBtn":
                 Puzzle puzzleBorrado  = (Puzzle)vista.listPuzzles.getSelectedValue();
                 modelo.borrar(puzzleBorrado);
                 break;
-            case "ListarPropietarios":
-                listarCompradores(modelo.getPropietarios());
+            case "ListarCompradores":
+                listarCompradores(modelo.getCompradores());
                 break;
-
+            case "altaCompradorBtn":
+                System.out.println("entro en alta comprador");
+                break;
 
         }
 
@@ -79,27 +93,37 @@ public class Controlador implements ActionListener, ListSelectionListener{
     }
 
     public void listarPuzzles(ArrayList<Puzzle> lista){
-        vista.dlm.clear();
+        vista.dlmPuzzles.clear();
         for(Puzzle unPuzzle : lista){
-            vista.dlm.addElement(unPuzzle);
+            vista.dlmPuzzles.addElement(unPuzzle);
         }
     }
 
     public void listarPuzzlesCompradores(List<Puzzle> lista){
-        vista.dlmPuzzlesCompradores.clear();
+        vista.dlmCompradorPuzzle.clear();
         for(Puzzle unPuzzle : lista){
-            vista.dlmPuzzlesCompradores.addElement(unPuzzle);
+            vista.dlmCompradorPuzzle.addElement(unPuzzle);
         }
     }
 
     private void addActionListeners(ActionListener listener){
         vista.conexionItem.addActionListener(listener);
         vista.salirItem.addActionListener(listener);
-        vista.altaButton.addActionListener(listener);
-        vista.borrarButton.addActionListener(listener);
-        vista.modificarButton.addActionListener(listener);
-        vista.listarButton.addActionListener(listener);
-        vista.listarCompradoresButton.addActionListener(listener);
+        vista.nuevoPuzzleBtn.addActionListener(listener);
+        vista.eliminarPuzzleBtn.addActionListener(listener);
+        vista.modPuzzleBtn.addActionListener(listener);
+        vista.altaCompradorBtn.addActionListener(listener);
+        vista.modificarCompradorBtn.addActionListener(listener);
+        vista.eliminarCompradorBtn.addActionListener(listener);
+        vista.altaTiendaBtn.addActionListener(listener);
+        vista.modificarTiendaBtn.addActionListener(listener);
+        vista.eliminarTiendaBtn.addActionListener(listener);
+        vista.altaEditorialBtn.addActionListener(listener);
+        vista.modificarEditorialBtn.addActionListener(listener);
+        vista.eliminarEditorialBtn.addActionListener(listener);
+        vista.listarPuzzlesComprador.addActionListener(listener);
+        vista.listarPuzzlesEditorial.addActionListener(listener);
+        vista.listarPuzzlesTienda.addActionListener(listener);
     }
 
     private void addListSelectionListener(ListSelectionListener listener){
@@ -112,13 +136,14 @@ public class Controlador implements ActionListener, ListSelectionListener{
         if(e.getValueIsAdjusting()){
             if(e.getSource() == vista.listPuzzles) {
                 Puzzle puzzleSeleccion = (Puzzle) vista.listPuzzles.getSelectedValue();
+                vista.txtTitulo.setText(String.valueOf(puzzleSeleccion.getTitulo()));
                 vista.txtIsbn.setText(String.valueOf(puzzleSeleccion.getIsbn()));
                 vista.txtPrecio.setText(String.valueOf(puzzleSeleccion.getPrecio()));
-                if (puzzleSeleccion.getCompradores() != null) {
+                /*if (puzzleSeleccion.getCompradores() != null) {
                     vista.txtComprador.setText(puzzleSeleccion.getCompradores().toString());
                 } else {
                     vista.txtComprador.setText("");
-                }
+                }*/
             }else{
                 if(e.getSource() == vista.listCompradores){
                     Comprador compradorSeleccionado = (Comprador) vista.listCompradores.getSelectedValue();

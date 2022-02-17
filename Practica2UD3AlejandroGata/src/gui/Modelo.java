@@ -1,9 +1,6 @@
 package gui;
 
-import com.alejandrogata.practica1ud3.Comprador;
-import com.alejandrogata.practica1ud3.Editorial;
-import com.alejandrogata.practica1ud3.Puzzle;
-import com.alejandrogata.practica1ud3.Tienda;
+import com.alejandrogata.practica2ud3.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -29,10 +26,13 @@ public class Modelo {
         configuracion.configure("hibernate.cfg.xml");
 
         //Indico la clase mapeada con anotaciones
+        configuracion.addAnnotatedClass(Tienda.class);
         configuracion.addAnnotatedClass(Puzzle.class);
         configuracion.addAnnotatedClass(Comprador.class);
         configuracion.addAnnotatedClass(Editorial.class);
-        configuracion.addAnnotatedClass(Tienda.class);
+        configuracion.addAnnotatedClass(CompradorPuzzle.class);
+        configuracion.addAnnotatedClass(CompradorTienda.class);
+        configuracion.addAnnotatedClass(VentaPuzzle.class);
 
         //Creamos un objeto ServiceRegistry a partir de los parámetros de configuración
         //Esta clase se usa para gestionar y proveer de acceso a servicios
@@ -79,9 +79,9 @@ public class Modelo {
         sesion.close();
     }
 
-    public ArrayList<Comprador> getPropietarios() {
+    public ArrayList<Comprador> getCompradores() {
         Session sesion = sessionFactory.openSession();
-        Query query = sesion.createQuery("FROM Propietario");
+        Query query = sesion.createQuery("FROM comprador");
         ArrayList<Comprador> listaCompradores = (ArrayList<Comprador>)query.getResultList();
         sesion.close();
         return listaCompradores;

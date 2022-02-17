@@ -4,18 +4,16 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3307/tiendapuzzles</property>
-        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <mapping class="com.alejandrogata.practica1ud3.Coleccion"/>
-        <mapping class="com.alejandrogata.practica1ud3.Comprador"/>
-        <mapping class="com.alejandrogata.practica1ud3.Dependiente"/>
-        <mapping class="com.alejandrogata.practica1ud3.Editorial"/>
-        <mapping class="com.alejandrogata.practica1ud3.Puzzle"/>
-        <mapping class="com.alejandrogata.practica1ud3.Tienda"/>
-        <!-- <property name="connection.username"/> -->
-        <!-- <property name="connection.password"/> -->
-
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL55Dialect</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"></property>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+
     </session-factory>
 </hibernate-configuration>
+
+
