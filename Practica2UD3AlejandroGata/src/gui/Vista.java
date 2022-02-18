@@ -14,7 +14,7 @@ public class Vista extends JFrame {
     public JTextField txtTitulo;
 
     public JButton nuevoPuzzleBtn;
-    public JButton modPuzzleBtn;
+    public JButton modificarPuzzleBtn;
     public JTextField txtNombreComprador;
     public JButton altaCompradorBtn;
 
@@ -41,24 +41,27 @@ public class Vista extends JFrame {
     public JList listCompradores;
     public JList listTiendas;
     public JList listEditoriales;
-    public JList ListProveedor;
-    public JList ListaPedido;
-    public JList listCompradoresPuzzles;
 
-    public JList listProvVerMat;
-
-
-    public JComboBox comboSociosTarifa;
-    public JButton listarPuzzlesComprador;
+    public JButton listarCompradorPuzzles;
+    public JButton listarEditorialPuzzles;
     public JTextField txtTlfEditorial;
-    JComboBox comboEditoriales;
-    JComboBox comboTiendas;
-    JComboBox comboCompradores;
-    JButton listarPuzzlesTienda;
-    JList listTiendasPuzzles;
-    JList listEditorialPuzzles;
-    JButton listarPuzzlesEditorial;
+    public JComboBox comboEditoriales;
+    public JComboBox comboTiendas;
+    public JComboBox comboPuzzles;
     public JComboBox comboActividadesInstalacion;
+    public JButton altaVentaBtn;
+    public JButton eliminarVentaBtn;
+    public JButton modificarVentaBtn;
+    public JButton altaCompraBtn;
+    public JButton modificarCompraBtn;
+    public JButton eliminarCompraBtn;
+    public JList listCompradorPuzzles;
+    public JList listEditorialPuzzles;
+    public JList listVentas;
+    public JList listCompras;
+    public JButton listarPuzzleCompradores;
+    public JComboBox comboPuzzles2;
+    public JComboBox comboComprador2;
 
     DefaultListModel dlmPuzzles;
     DefaultListModel dlmCompradores;
@@ -67,9 +70,10 @@ public class Vista extends JFrame {
 
 
     //Filtros
-    DefaultListModel dlmCompradorPuzzle;
-    //DefaultListModel dlmMaterialProveedor;
-    //DefaultListModel dlmActividadesVerInstructor;
+    DefaultListModel dlmCompradorPuzzles;
+    DefaultListModel dlmEditorialPuzzles;
+    DefaultListModel dlmVentas;
+    DefaultListModel dlmCompras;
 
     JMenuItem conexionItem;
     JMenuItem salirItem;
@@ -109,8 +113,14 @@ public class Vista extends JFrame {
         dlmEditoriales = new DefaultListModel();
         listEditoriales.setModel(dlmEditoriales);
 
-        dlmCompradorPuzzle = new DefaultListModel();
-        listCompradoresPuzzles.setModel(dlmCompradorPuzzle);
+        dlmEditorialPuzzles = new DefaultListModel();
+        listEditorialPuzzles.setModel(dlmEditorialPuzzles);
+
+        dlmVentas = new DefaultListModel();
+        listVentas.setModel(dlmVentas);
+
+        dlmCompras = new DefaultListModel();
+        listCompras.setModel(dlmCompras);
 
     }
 

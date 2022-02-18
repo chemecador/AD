@@ -12,6 +12,11 @@ public class Tienda {
     private List<Comprador> compradores;
     private List<VentaPuzzle> ventas;
 
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + " | Teléfono: " + telefono;
+    }
+
     @Id
     @Column(name = "idtienda")
     public int getIdtienda() {

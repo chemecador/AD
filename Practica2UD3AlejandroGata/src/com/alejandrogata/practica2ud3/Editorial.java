@@ -11,6 +11,10 @@ public class Editorial {
     private String telefono;
     private List<Puzzle> puzzles;
 
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + " | Teléfono: " + telefono;
+    }
     @Id
     @Column(name = "ideditorial")
     public int getIdeditorial() {

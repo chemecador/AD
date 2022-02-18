@@ -9,7 +9,6 @@ import org.hibernate.cfg.Configuration;
 
 import javax.persistence.Query;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Modelo {
     SessionFactory sessionFactory;
@@ -44,17 +43,6 @@ public class Modelo {
 
     }
 
-    public void altaPuzzle(Puzzle nuevoPuzzle) {
-        //Obtengo una session a partir de la factoria de sesiones
-        Session sesion = sessionFactory.openSession();
-
-        sesion.beginTransaction();
-        sesion.save(nuevoPuzzle);
-        sesion.getTransaction().commit();
-
-        sesion.close();
-    }
-
     public ArrayList<Puzzle> getPuzzles() {
         Session sesion = sessionFactory.openSession();
         Query query = sesion.createQuery("FROM Puzzle");
@@ -63,7 +51,7 @@ public class Modelo {
         return lista;
     }
 
-    public void modificar(Puzzle puzzleSeleccion) {
+    public void modificarPuzzle(Puzzle puzzleSeleccion) {
         Session sesion = sessionFactory.openSession();
         sesion.beginTransaction();
         sesion.saveOrUpdate(puzzleSeleccion);
@@ -71,7 +59,7 @@ public class Modelo {
         sesion.close();
     }
 
-    public void borrar(Puzzle puzzleBorrado) {
+    public void borrarPuzzle(Puzzle puzzleBorrado) {
         Session sesion = sessionFactory.openSession();
         sesion.beginTransaction();
         sesion.delete(puzzleBorrado);
@@ -81,18 +69,78 @@ public class Modelo {
 
     public ArrayList<Comprador> getCompradores() {
         Session sesion = sessionFactory.openSession();
-        Query query = sesion.createQuery("FROM comprador");
+        Query query = sesion.createQuery("FROM Comprador");
         ArrayList<Comprador> listaCompradores = (ArrayList<Comprador>)query.getResultList();
         sesion.close();
         return listaCompradores;
     }
-
-    public ArrayList<Puzzle> getPuzzlesComprador(Comprador compradorSeleccionado) {
+    public ArrayList<Tienda> getTiendas(){
         Session sesion = sessionFactory.openSession();
-        Query query = sesion.createQuery("FROM puzzle WHERE comprador = :prop");
-        query.setParameter("prop", compradorSeleccionado);
-        ArrayList<Puzzle> lista = (ArrayList<Puzzle>) query.getResultList();
+        Query query = sesion.createQuery("FROM Tienda");
+        ArrayList<Tienda> listaTiendas = (ArrayList<Tienda>)query.getResultList();
         sesion.close();
-        return lista;
+        return listaTiendas;
+    }
+
+    public ArrayList<Editorial> getEditoriales(){
+        Session sesion = sessionFactory.openSession();
+        Query query = sesion.createQuery("FROM Editorial");
+        ArrayList<Editorial> listaEditoriales = (ArrayList<Editorial>)query.getResultList();
+        sesion.close();
+        return listaEditoriales;
+    }
+    public ArrayList<VentaPuzzle> getVentas(){
+        Session sesion = sessionFactory.openSession();
+        Query query = sesion.createQuery("FROM VentaPuzzle");
+        ArrayList<VentaPuzzle> ventas = (ArrayList<VentaPuzzle>)query.getResultList();
+        sesion.close();
+        return ventas;
+    }
+    public ArrayList<CompradorPuzzle> getCompras(){
+        Session sesion = sessionFactory.openSession();
+        Query query = sesion.createQuery("FROM CompradorPuzzle");
+        ArrayList<CompradorPuzzle> cp = (ArrayList<CompradorPuzzle>)query.getResultList();
+        sesion.close();
+        return cp;
+    }
+    public void altaComprador(Comprador c) {
+        //Obtengo una session a partir de la factoria de sesiones
+        Session sesion = sessionFactory.openSession();
+
+        sesion.beginTransaction();
+        sesion.save(c);
+        sesion.getTransaction().commit();
+
+        sesion.close();
+    }
+
+    public void modificarComprador(Comprador c) {
+
+    }
+    public void insertar(Object o) {
+        //Obtengo una session a partir de la factoria de sesiones
+        Session sesion = sessionFactory.openSession();
+
+        sesion.beginTransaction();
+        sesion.save(o);
+        sesion.getTransaction().commit();
+
+        sesion.close();
+    }
+
+
+    public void modificar(Object o) {
+        Session sesion = sessionFactory.openSession();
+        sesion.beginTransaction();
+        sesion.saveOrUpdate(o);
+        sesion.getTransaction().commit();
+        sesion.close();
+    }
+    public void eliminar(Object o) {
+        Session sesion = sessionFactory.openSession();
+        sesion.beginTransaction();
+        sesion.delete(o);
+        sesion.getTransaction().commit();
+        sesion.close();
     }
 }

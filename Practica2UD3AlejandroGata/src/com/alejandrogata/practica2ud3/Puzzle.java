@@ -9,7 +9,6 @@ public class Puzzle {
     private int idpuzzle;
     private String titulo;
     private String isbn;
-    private double precio;
     private List<Comprador> compradores;
     private List<VentaPuzzle> ventas;
     private Editorial editorial;
@@ -44,15 +43,6 @@ public class Puzzle {
         this.isbn = isbn;
     }
 
-    @Basic
-    @Column(name = "precio")
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -60,14 +50,13 @@ public class Puzzle {
         if (o == null || getClass() != o.getClass()) return false;
         Puzzle puzzle = (Puzzle) o;
         return idpuzzle == puzzle.idpuzzle &&
-                Double.compare(puzzle.precio, precio) == 0 &&
                 Objects.equals(titulo, puzzle.titulo) &&
                 Objects.equals(isbn, puzzle.isbn);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idpuzzle, titulo, isbn, precio);
+        return Objects.hash(idpuzzle, titulo, isbn);
     }
 
     @ManyToMany(mappedBy = "puzzles")
@@ -100,6 +89,6 @@ public class Puzzle {
 
     @Override
     public String toString() {
-        return "Título: " + titulo + " | ISBN: " + isbn + " |  Precio: " + precio;
+        return "Título: " + titulo + " | ISBN: " + isbn;
     }
 }

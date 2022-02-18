@@ -11,6 +11,11 @@ public class VentaPuzzle {
     private Puzzle puzzle;
     private Tienda tienda;
 
+    @Override
+    public String toString() {
+        return "Puzzle: " + puzzle.getTitulo() + " | Tienda: " + tienda.getNombre() + " | Precio: " + precio;
+    }
+
     @Id
     @Column(name = "idpuzzletienda")
     public int getIdpuzzletienda() {

@@ -13,6 +13,11 @@ public class Comprador {
     private List<Tienda> tiendas;
     private List<Puzzle> puzzles;
 
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + " | Apellidos: " + apellidos + " |  DNI: " + dni;
+    }
+
     @Id
     @Column(name = "idcomprador")
     public int getIdcomprador() {
