@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS tiendapuzzles;
-CREATE DATABASE IF EXISTS tiendapuzzles;
+CREATE DATABASE IF NOT EXISTS tiendapuzzles;
 USE tiendapuzzles;
 
 -- phpMyAdmin SQL Dump

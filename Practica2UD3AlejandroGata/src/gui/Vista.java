@@ -70,7 +70,7 @@ public class Vista extends JFrame {
      * Constructor de clase vacío que inizializa lo necesario
      */
     public Vista(){
-        frame = new JFrame("Vista");
+        frame = new JFrame("Tienda de Puzzles");
         frame.setContentPane(panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.pack();
