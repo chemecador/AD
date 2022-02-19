@@ -89,6 +89,6 @@ public class Puzzle {
 
     @Override
     public String toString() {
-        return "Título: " + titulo + " | ISBN: " + isbn;
+        return "Título: " + titulo + " | ISBN: " + isbn + " | Editorial: " + editorial;
     }
 }

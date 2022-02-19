@@ -10,11 +10,19 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/***
+ * Clase controlador
+ */
 public class Controlador implements ActionListener, ListSelectionListener {
     private Vista vista;
     private Modelo modelo;
     private boolean conectado;
 
+    /***
+     * Constructor de la clase
+     * @param modelo modelo
+     * @param vista vista
+     */
     public Controlador(Modelo modelo, Vista vista) {
         this.vista = vista;
         this.modelo = modelo;
@@ -35,7 +43,6 @@ public class Controlador implements ActionListener, ListSelectionListener {
                     "Error de conexión", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        System.out.println("Comando vale " + comando);
         switch (comando) {
             case "Salir":
                 modelo.desconectar();
@@ -59,24 +66,31 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 listarPuzzles(modelo.getPuzzles());
                 break;
 
-            case "modificarPuzzleBtn":
-                Puzzle puzzleSeleccion = (Puzzle) vista.listPuzzles.getSelectedValue();
-                puzzleSeleccion.setTitulo(vista.txtTitulo.getText());
-                puzzleSeleccion.setIsbn(vista.txtIsbn.getText());
-                modelo.modificar(puzzleSeleccion);
+            case "modificarPuzzleBtn": {
+                Puzzle p = (Puzzle) vista.listPuzzles.getSelectedValue();
+                p.setTitulo(vista.txtTitulo.getText());
+                p.setIsbn(vista.txtIsbn.getText());
+                p.setEditorial((Editorial) vista.comboEditoriales.getSelectedItem());
+                modelo.modificar(p);
                 break;
+            }
 
-            case "eliminarPuzzleBtn":
-                Puzzle puzzleBorrado = (Puzzle) vista.listPuzzles.getSelectedValue();
-                modelo.eliminar(puzzleBorrado);
+            case "eliminarPuzzleBtn": {
+                Puzzle p = (Puzzle) vista.listPuzzles.getSelectedValue();
+                if (!comprobarPuzzleVenta(p.getIdpuzzle())) {
+                    JOptionPane.showMessageDialog(null, "Este puzzle está ligado a una venta, elimina primero la venta.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                }
+                modelo.eliminar(p);
                 break;
+            }
             case "altaCompradorBtn": {
-                System.out.println("entro en alta comprador");
                 Comprador c = new Comprador();
                 c.setNombre(vista.txtNombreComprador.getText());
                 c.setApellidos(vista.txtApellidos.getText());
                 c.setDni(vista.txtDNI.getText());
-                modelo.altaComprador(c);
+                modelo.insertar(c);
                 break;
             }
             case "modificarCompradorBtn": {
@@ -84,7 +98,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 c.setNombre(vista.txtNombreComprador.getText());
                 c.setApellidos(vista.txtApellidos.getText());
                 c.setDni(vista.txtDNI.getText());
-                modelo.modificarComprador(c);
+                modelo.modificar(c);
             }
             break;
             case "eliminarCompradorBtn": {
@@ -92,8 +106,6 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 modelo.eliminar(c);
                 break;
             }
-            case "listarCompradorPuzzles":
-                break;
             case "altaTiendaBtn": {
                 Tienda t = new Tienda();
                 t.setNombre(vista.txtNombreTienda.getText());
@@ -110,6 +122,11 @@ public class Controlador implements ActionListener, ListSelectionListener {
             break;
             case "eliminarTiendaBtn": {
                 Tienda t = (Tienda) vista.listTiendas.getSelectedValue();
+                if (!comprobarTiendaVenta(t.getIdtienda())) {
+                    JOptionPane.showMessageDialog(null, "Esta tienda está ligada a una venta, elimina primero la venta.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                }
                 modelo.eliminar(t);
                 break;
             }
@@ -154,43 +171,114 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 modelo.eliminar(v);
                 break;
             }
+            case "listarEditorialPuzzlesBtn": {
+                Editorial edi = (Editorial) vista.listEditoriales.getSelectedValue();
+                listarEditorialPuzzles(modelo.getEditorialPuzzles(edi));
+            }
         }
+        limpiarCampos();
         actualizar();
     }
 
+    /***
+     * Comprobar si un puzzle está en el listado de ventas
+     * @param id del puzzle
+     * @return true si se puede borrar, false si no
+     */
+    private boolean comprobarPuzzleVenta(int id) {
+        for (VentaPuzzle venta : modelo.getVentas()) {
+            Puzzle p = venta.getPuzzle();
+            if (p.getIdpuzzle() == id) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /***
+     * Comprobar si una tienda está en el listado de ventas
+     * @param id de la tienda
+     * @return true si se puede borrar, false si no
+     */
+    private boolean comprobarTiendaVenta(int id) {
+        for (VentaPuzzle venta : modelo.getVentas()) {
+            Tienda t = venta.getTienda();
+            if (t.getIdtienda() == id) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /***
+     * Limpiar los campos
+     */
+    private void limpiarCampos() {
+        limpiarCamposPuzzles();
+        limpiarCamposCompradores();
+        limpiarCamposEditoriales();
+        limpiarCamposTiendas();
+        limpiarCamposVentas();
+    }
+
+    /***
+     * Limpiar los campos de las ventas
+     */
+    private void limpiarCamposVentas() {
+        vista.comboPuzzles.setSelectedItem(-1);
+        vista.comboTiendas.setSelectedItem(-1);
+        vista.txtPrecio.setText("");
+    }
+
+    /***
+     * Limpiar los campos de las tiendas
+     */
+    private void limpiarCamposTiendas() {
+        vista.txtNombreTienda.setText("");
+        vista.txtTlfTienda.setText("");
+    }
+
+    /***
+     * Limpiar los campos de las editoriales
+     */
+    private void limpiarCamposEditoriales() {
+        vista.txtNombreEditorial.setText("");
+        vista.txtTlfEditorial.setText("");
+    }
+
+    /***
+     * Limpiar los campos de los compradores
+     */
+    private void limpiarCamposCompradores() {
+        vista.txtNombreComprador.setText("");
+        vista.txtApellidos.setText("");
+        vista.txtDNI.setText("");
+    }
+
+    /***
+     * Limpiar los campos de los puzzles
+     */
+    private void limpiarCamposPuzzles() {
+        vista.txtTitulo.setText("");
+        vista.txtIsbn.setText("");
+        vista.comboEditoriales.setSelectedItem(-1);
+    }
+
+    /***
+     * Actualizar los campos
+     */
     private void actualizar() {
         listarPuzzles(modelo.getPuzzles());
         listarCompradores(modelo.getCompradores());
         listarTiendas(modelo.getTiendas());
         listarEditoriales(modelo.getEditoriales());
         listarVentas(modelo.getVentas());
-        listarCompras(modelo.getCompras());
-        listarEditorialPuzzles(modelo.getPuzzles());
     }
 
-    private void listarCompras(ArrayList<CompradorPuzzle> compras) {
-
-        vista.dlmCompras.clear();
-        for (CompradorPuzzle cp : compras) {
-            vista.dlmCompras.addElement(compras);
-        }
-
-        vista.comboPuzzles2.removeAllItems();
-        ArrayList<Puzzle> p = modelo.getPuzzles();
-        vista.comboComprador2.removeAllItems();
-        ArrayList<Comprador> t = modelo.getCompradores();
-
-
-        for (Puzzle puzzle : p) {
-            vista.comboPuzzles2.addItem(puzzle);
-        }
-        for (Comprador comprador : t) {
-            vista.comboComprador2.addItem(comprador);
-        }
-        vista.comboPuzzles2.setSelectedIndex(-1);
-        vista.comboComprador2.setSelectedIndex(-1);
-    }
-
+    /***
+     * Listar los compradores
+     * @param lista de compradores
+     */
     public void listarCompradores(ArrayList<Comprador> lista) {
         vista.dlmCompradores.clear();
         for (Comprador c : lista) {
@@ -198,6 +286,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
         }
     }
 
+    /***
+     * Listar las tiendas
+     * @param lista de tiendas
+     */
     private void listarTiendas(ArrayList<Tienda> lista) {
         vista.dlmTiendas.clear();
         for (Tienda t : lista) {
@@ -212,6 +304,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
         vista.comboTiendas.setSelectedIndex(-1);
     }
 
+    /***
+     * Listar las editoriales
+     * @param lista de editoriales
+     */
     private void listarEditoriales(ArrayList<Editorial> lista) {
         vista.dlmEditoriales.clear();
         for (Editorial e : lista) {
@@ -226,6 +322,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
         vista.comboEditoriales.setSelectedIndex(-1);
     }
 
+    /***
+     * Listar los puzzles
+     * @param lista de puzzles
+     */
     public void listarPuzzles(ArrayList<Puzzle> lista) {
         vista.dlmPuzzles.clear();
         for (Puzzle unPuzzle : lista) {
@@ -240,6 +340,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
         vista.comboPuzzles.setSelectedIndex(-1);
     }
 
+    /***
+     * Listar las ventas
+     * @param ventas lista de ventas
+     */
     public void listarVentas(List<VentaPuzzle> ventas) {
         vista.dlmVentas.clear();
         for (VentaPuzzle venta : ventas) {
@@ -262,6 +366,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
         vista.comboTiendas.setSelectedIndex(-1);
     }
 
+    /***
+     * Listar los puzzles que tiene una editorial
+     * @param lista de puzzles
+     */
     public void listarEditorialPuzzles(List<Puzzle> lista) {
         vista.dlmEditorialPuzzles.clear();
         for (Puzzle unPuzzle : lista) {
@@ -269,7 +377,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
         }
     }
 
-
+    /***
+     * Añadir los listener
+     * @param listener
+     */
     private void addActionListeners(ActionListener listener) {
         vista.conexionItem.addActionListener(listener);
         vista.salirItem.addActionListener(listener);
@@ -288,12 +399,13 @@ public class Controlador implements ActionListener, ListSelectionListener {
         vista.altaVentaBtn.addActionListener(listener);
         vista.modificarVentaBtn.addActionListener(listener);
         vista.eliminarVentaBtn.addActionListener(listener);
-        vista.altaCompraBtn.addActionListener(listener);
-        vista.modificarCompraBtn.addActionListener(listener);
-        vista.eliminarCompraBtn.addActionListener(listener);
-        vista.listarEditorialPuzzles.addActionListener(listener);
+        vista.listarEditorialPuzzlesBtn.addActionListener(listener);
     }
 
+    /**
+     * Añadir los listeners de las listas
+     * @param listener
+     */
     private void addListSelectionListener(ListSelectionListener listener) {
         vista.listPuzzles.addListSelectionListener(listener);
         vista.listCompradores.addListSelectionListener(listener);
@@ -307,22 +419,16 @@ public class Controlador implements ActionListener, ListSelectionListener {
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting()) {
             if (e.getSource() == vista.listPuzzles) {
-                System.out.println("entro en listPuzzles");
                 Puzzle puzzleSeleccion = (Puzzle) vista.listPuzzles.getSelectedValue();
                 vista.txtTitulo.setText(String.valueOf(puzzleSeleccion.getTitulo()));
                 vista.txtIsbn.setText(String.valueOf(puzzleSeleccion.getIsbn()));
+                vista.comboEditoriales.setSelectedItem(puzzleSeleccion.getEditorial());
             }
             if (e.getSource() == vista.listCompradores) {
                 Comprador compradorSeleccionado = (Comprador) vista.listCompradores.getSelectedValue();
                 vista.txtNombreComprador.setText(String.valueOf(compradorSeleccionado.getNombre()));
                 vista.txtApellidos.setText(String.valueOf(compradorSeleccionado.getApellidos()));
                 vista.txtDNI.setText(String.valueOf(compradorSeleccionado.getDni()));
-                    /*if (puzzleSeleccion.getCompradores() != null) {
-                        vista.txtNombreComprador.setText(puzzleSeleccion.getCompradores().toString());
-                    } else {
-                        vista.txtComprador.setText("");
-                    }*/
-                //listarPuzzlesCompradores(modelo.getPuzzlesComprador(compradorSeleccionado));
             }
             if (e.getSource() == vista.listTiendas) {
                 Tienda t = (Tienda) vista.listTiendas.getSelectedValue();
@@ -333,6 +439,12 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 Editorial t = (Editorial) vista.listEditoriales.getSelectedValue();
                 vista.txtNombreEditorial.setText(String.valueOf(t.getNombre()));
                 vista.txtTlfEditorial.setText(String.valueOf(t.getTelefono()));
+            }
+            if (e.getSource() == vista.listVentas) {
+                VentaPuzzle vp = (VentaPuzzle) vista.listVentas.getSelectedValue();
+                vista.comboPuzzles.setSelectedItem(vp.getPuzzle());
+                vista.comboTiendas.setSelectedItem(vp.getTienda());
+                vista.txtPrecio.setText(String.valueOf(vp.getPrecio()));
             }
         }
 

@@ -10,15 +10,25 @@ import org.hibernate.cfg.Configuration;
 import javax.persistence.Query;
 import java.util.ArrayList;
 
+/***
+ * Clase Modelo
+ */
 public class Modelo {
+
     SessionFactory sessionFactory;
 
+    /***
+     * Método desconectar
+     */
     public void desconectar() {
         //Cierro la factoria de sessiones
         if(sessionFactory != null && sessionFactory.isOpen())
             sessionFactory.close();
     }
 
+    /***
+     * Método conectar
+     */
     public void conectar() {
         Configuration configuracion = new Configuration();
         //Cargo el fichero Hibernate.cfg.xml
@@ -43,7 +53,25 @@ public class Modelo {
 
     }
 
-    public ArrayList<Puzzle> getPuzzles() {
+    /***
+     * Devuelve los puzzles que tiene una editorial
+     * @param editorial editorial
+     * @return lista de puzzles
+     */
+    ArrayList<Puzzle> getEditorialPuzzles(Editorial editorial) {
+        Session sesion = sessionFactory.openSession();
+        Query query = sesion.createQuery("FROM Puzzle WHERE editorial =: edit");
+        query.setParameter("edit", editorial);
+        ArrayList<Puzzle> lista = (ArrayList<Puzzle>)query.getResultList();
+        sesion.close();
+        return lista;
+    }
+
+    /***
+     * Devuelve los puzzles disponibles
+     * @return lista de puzzles
+     */
+    ArrayList<Puzzle> getPuzzles() {
         Session sesion = sessionFactory.openSession();
         Query query = sesion.createQuery("FROM Puzzle");
         ArrayList<Puzzle> lista = (ArrayList<Puzzle>)query.getResultList();
@@ -51,30 +79,24 @@ public class Modelo {
         return lista;
     }
 
-    public void modificarPuzzle(Puzzle puzzleSeleccion) {
-        Session sesion = sessionFactory.openSession();
-        sesion.beginTransaction();
-        sesion.saveOrUpdate(puzzleSeleccion);
-        sesion.getTransaction().commit();
-        sesion.close();
-    }
 
-    public void borrarPuzzle(Puzzle puzzleBorrado) {
-        Session sesion = sessionFactory.openSession();
-        sesion.beginTransaction();
-        sesion.delete(puzzleBorrado);
-        sesion.getTransaction().commit();
-        sesion.close();
-    }
-
-    public ArrayList<Comprador> getCompradores() {
+    /***
+     * Devuelve los compradores disponibles
+     * @return lista de compradores
+     */
+    ArrayList<Comprador> getCompradores() {
         Session sesion = sessionFactory.openSession();
         Query query = sesion.createQuery("FROM Comprador");
         ArrayList<Comprador> listaCompradores = (ArrayList<Comprador>)query.getResultList();
         sesion.close();
         return listaCompradores;
     }
-    public ArrayList<Tienda> getTiendas(){
+
+    /***
+     * Devuelve las tiendas disponibles
+     * @return lista de tiendas
+     */
+    ArrayList<Tienda> getTiendas(){
         Session sesion = sessionFactory.openSession();
         Query query = sesion.createQuery("FROM Tienda");
         ArrayList<Tienda> listaTiendas = (ArrayList<Tienda>)query.getResultList();
@@ -82,42 +104,35 @@ public class Modelo {
         return listaTiendas;
     }
 
-    public ArrayList<Editorial> getEditoriales(){
+    /***
+     * Devuelve las editoriales disponibles
+     * @return lista de editoriales
+     */
+    ArrayList<Editorial> getEditoriales(){
         Session sesion = sessionFactory.openSession();
         Query query = sesion.createQuery("FROM Editorial");
         ArrayList<Editorial> listaEditoriales = (ArrayList<Editorial>)query.getResultList();
         sesion.close();
         return listaEditoriales;
     }
-    public ArrayList<VentaPuzzle> getVentas(){
+
+    /***
+     * Devuelve las ventas disponibles
+     * @return lista de ventas
+     */
+    ArrayList<VentaPuzzle> getVentas(){
         Session sesion = sessionFactory.openSession();
         Query query = sesion.createQuery("FROM VentaPuzzle");
         ArrayList<VentaPuzzle> ventas = (ArrayList<VentaPuzzle>)query.getResultList();
         sesion.close();
         return ventas;
     }
-    public ArrayList<CompradorPuzzle> getCompras(){
-        Session sesion = sessionFactory.openSession();
-        Query query = sesion.createQuery("FROM CompradorPuzzle");
-        ArrayList<CompradorPuzzle> cp = (ArrayList<CompradorPuzzle>)query.getResultList();
-        sesion.close();
-        return cp;
-    }
-    public void altaComprador(Comprador c) {
-        //Obtengo una session a partir de la factoria de sesiones
-        Session sesion = sessionFactory.openSession();
 
-        sesion.beginTransaction();
-        sesion.save(c);
-        sesion.getTransaction().commit();
-
-        sesion.close();
-    }
-
-    public void modificarComprador(Comprador c) {
-
-    }
-    public void insertar(Object o) {
+    /***
+     * Insertar un objeto en la BBDD
+     * @param o objeto a insertar en la BBDD
+     */
+    void insertar(Object o) {
         //Obtengo una session a partir de la factoria de sesiones
         Session sesion = sessionFactory.openSession();
 
@@ -128,15 +143,23 @@ public class Modelo {
         sesion.close();
     }
 
-
-    public void modificar(Object o) {
+    /***
+     * Modificar un objeto de la BBDD
+     * @param o objeto a modificar en la BBDD
+     */
+    void modificar(Object o) {
         Session sesion = sessionFactory.openSession();
         sesion.beginTransaction();
         sesion.saveOrUpdate(o);
         sesion.getTransaction().commit();
         sesion.close();
     }
-    public void eliminar(Object o) {
+
+    /***
+     * Eliminar un objeto de la BBDD
+     * @param o objeto a eliminar en la BBDD
+     */
+    void eliminar(Object o) {
         Session sesion = sessionFactory.openSession();
         sesion.beginTransaction();
         sesion.delete(o);

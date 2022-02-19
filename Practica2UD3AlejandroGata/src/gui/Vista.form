@@ -7,6 +7,7 @@
       <xy x="20" y="20" width="741" height="394"/>
     </constraints>
     <properties>
+      <foreground color="-7083521"/>
       <minimumSize width="741" height="394"/>
     </properties>
     <border type="none"/>
@@ -19,8 +20,8 @@
           <forms/>
         </constraints>
         <properties>
-          <background color="-4488442"/>
-          <foreground color="-1"/>
+          <background color="-7083521"/>
+          <foreground color="-41915"/>
         </properties>
         <border type="none"/>
         <children>
@@ -44,7 +45,9 @@
             <constraints>
               <tabbedpane title="Puzzles"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-7083521"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="244a7" class="javax.swing.JLabel">
@@ -53,6 +56,8 @@
                   <forms/>
                 </constraints>
                 <properties>
+                  <background color="-7083521"/>
+                  <foreground color="-41915"/>
                   <text value="Título"/>
                 </properties>
               </component>
@@ -62,6 +67,8 @@
                   <forms/>
                 </constraints>
                 <properties>
+                  <background color="-7083521"/>
+                  <foreground color="-41915"/>
                   <text value="ISBN"/>
                 </properties>
               </component>
@@ -103,6 +110,8 @@
                   <forms/>
                 </constraints>
                 <properties>
+                  <background color="-7083521"/>
+                  <foreground color="-41915"/>
                   <text value="Editorial"/>
                 </properties>
               </component>
@@ -120,6 +129,7 @@
                 </constraints>
                 <properties>
                   <actionCommand value="nuevoPuzzleBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Registrar"/>
                 </properties>
               </component>
@@ -130,6 +140,7 @@
                 </constraints>
                 <properties>
                   <actionCommand value="modificarPuzzleBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Modificar"/>
                 </properties>
               </component>
@@ -140,6 +151,7 @@
                 </constraints>
                 <properties>
                   <actionCommand value="eliminarPuzzleBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Eliminar"/>
                 </properties>
               </component>
@@ -157,15 +169,15 @@
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
-            <rowspec value="top:4dlu:noGrow"/>
-            <rowspec value="center:d:grow"/>
             <colspec value="fill:d:noGrow"/>
             <colspec value="left:4dlu:noGrow"/>
             <colspec value="fill:d:grow"/>
             <constraints>
               <tabbedpane title="Compradores"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-7083521"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="23a1" class="javax.swing.JLabel">
@@ -174,6 +186,7 @@
                   <forms/>
                 </constraints>
                 <properties>
+                  <foreground color="-41915"/>
                   <text value="Nombre"/>
                 </properties>
               </component>
@@ -183,6 +196,7 @@
                   <forms/>
                 </constraints>
                 <properties>
+                  <foreground color="-41915"/>
                   <text value="Apellidos"/>
                 </properties>
               </component>
@@ -192,6 +206,7 @@
                   <forms/>
                 </constraints>
                 <properties>
+                  <foreground color="-41915"/>
                   <text value="DNI"/>
                 </properties>
               </component>
@@ -229,6 +244,7 @@
                 </constraints>
                 <properties>
                   <actionCommand value="altaCompradorBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Registrar"/>
                 </properties>
               </component>
@@ -239,6 +255,7 @@
                 </constraints>
                 <properties>
                   <actionCommand value="modificarCompradorBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Modificar"/>
                 </properties>
               </component>
@@ -249,6 +266,7 @@
                 </constraints>
                 <properties>
                   <actionCommand value="eliminarCompradorBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Eliminar"/>
                 </properties>
               </component>
@@ -265,15 +283,6 @@
                     <properties/>
                   </component>
                 </children>
-              </scrollpane>
-              <scrollpane id="da329">
-                <constraints>
-                  <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                  <forms defaultalign-horz="false" defaultalign-vert="false"/>
-                </constraints>
-                <properties/>
-                <border type="none"/>
-                <children/>
               </scrollpane>
             </children>
           </grid>
@@ -295,7 +304,9 @@
             <constraints>
               <tabbedpane title="Editoriales"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-7083521"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="3d96d" class="javax.swing.JLabel">
@@ -304,6 +315,7 @@
                   <forms/>
                 </constraints>
                 <properties>
+                  <foreground color="-41915"/>
                   <text value="Nombre"/>
                 </properties>
               </component>
@@ -313,6 +325,7 @@
                   <forms/>
                 </constraints>
                 <properties>
+                  <foreground color="-41915"/>
                   <text value="Teléfono"/>
                 </properties>
               </component>
@@ -323,6 +336,7 @@
                 </constraints>
                 <properties>
                   <actionCommand value="altaEditorialBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Registrar"/>
                 </properties>
               </component>
@@ -333,6 +347,7 @@
                 </constraints>
                 <properties>
                   <actionCommand value="modificarEditorialBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Modificar"/>
                 </properties>
               </component>
@@ -343,6 +358,7 @@
                 </constraints>
                 <properties>
                   <actionCommand value="eliminarEditorialBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Eliminar"/>
                 </properties>
               </component>
@@ -387,13 +403,15 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="ad5fa" class="javax.swing.JButton" binding="listarEditorialPuzzles">
+              <component id="ad5fa" class="javax.swing.JButton" binding="listarEditorialPuzzlesBtn">
                 <constraints>
                   <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms/>
                 </constraints>
                 <properties>
-                  <actionCommand value="listarPuzzlesEditorial"/>
+                  <actionCommand value="listarEditorialPuzzlesBtn"/>
+                  <background color="-11513776"/>
+                  <foreground color="-41915"/>
                   <text value="Ver Puzzles"/>
                 </properties>
               </component>
@@ -415,7 +433,9 @@
             <constraints>
               <tabbedpane title="Tiendas"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-7083521"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="1414e" class="javax.swing.JLabel">
@@ -424,6 +444,7 @@
                   <forms/>
                 </constraints>
                 <properties>
+                  <foreground color="-41915"/>
                   <text value="Nombre"/>
                 </properties>
               </component>
@@ -433,6 +454,7 @@
                   <forms/>
                 </constraints>
                 <properties>
+                  <foreground color="-41915"/>
                   <text value="Teléfono"/>
                 </properties>
               </component>
@@ -443,6 +465,7 @@
                 </constraints>
                 <properties>
                   <actionCommand value="modificarTiendaBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Modificar"/>
                 </properties>
               </component>
@@ -453,6 +476,7 @@
                 </constraints>
                 <properties>
                   <actionCommand value="eliminarTiendaBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Eliminar"/>
                 </properties>
               </component>
@@ -497,170 +521,129 @@
                 </constraints>
                 <properties>
                   <actionCommand value="altaTiendaBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Registrar"/>
                 </properties>
               </component>
             </children>
           </grid>
-          <grid id="7918" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
+          <grid id="7918" layout-manager="FormLayout">
+            <rowspec value="center:d:grow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:d:grow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:d:grow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:d:grow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:d:grow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:d:grow"/>
+            <colspec value="fill:max(d;4px):noGrow"/>
+            <colspec value="left:4dlu:noGrow"/>
+            <colspec value="fill:d:grow"/>
             <constraints>
               <tabbedpane title="Venta"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-7083521"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="8604" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
                 </constraints>
                 <properties>
+                  <foreground color="-41915"/>
                   <text value="Precio"/>
                 </properties>
               </component>
               <component id="18019" class="javax.swing.JTextField" binding="txtPrecio">
                 <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
                   </grid>
+                  <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties/>
               </component>
               <component id="e413e" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
                 </constraints>
                 <properties>
+                  <foreground color="-41915"/>
                   <text value="Tienda"/>
                 </properties>
               </component>
               <component id="fa096" class="javax.swing.JComboBox" binding="comboPuzzles">
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
                 </constraints>
                 <properties/>
               </component>
               <component id="bb849" class="javax.swing.JLabel">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
                 </constraints>
                 <properties>
+                  <foreground color="-41915"/>
                   <text value="Puzzle"/>
                 </properties>
               </component>
               <component id="29138" class="javax.swing.JComboBox" binding="comboTiendas">
                 <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
                 </constraints>
                 <properties/>
               </component>
               <component id="d0bee" class="javax.swing.JList" binding="listVentas">
                 <constraints>
-                  <grid row="3" column="1" row-span="3" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                  <grid row="6" column="2" row-span="3" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="50"/>
                   </grid>
+                  <forms defaultalign-vert="false"/>
                 </constraints>
                 <properties/>
               </component>
               <component id="35fa" class="javax.swing.JButton" binding="altaVentaBtn">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
                 </constraints>
                 <properties>
                   <actionCommand value="altaVentaBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Registrar"/>
                 </properties>
               </component>
               <component id="f94a3" class="javax.swing.JButton" binding="eliminarVentaBtn">
                 <constraints>
-                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
                 </constraints>
                 <properties>
                   <actionCommand value="eliminarVentaBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Eliminar"/>
                 </properties>
               </component>
               <component id="99394" class="javax.swing.JButton" binding="modificarVentaBtn">
                 <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <forms/>
                 </constraints>
                 <properties>
                   <actionCommand value="modificarVentaBtn"/>
+                  <foreground color="-41915"/>
                   <text value="Modificar"/>
                 </properties>
-              </component>
-            </children>
-          </grid>
-          <grid id="b8fee" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
-            <constraints>
-              <tabbedpane title="Compra"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="4714f" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Comprador"/>
-                </properties>
-              </component>
-              <component id="5d254" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Puzzle"/>
-                </properties>
-              </component>
-              <component id="ee409" class="javax.swing.JComboBox" binding="comboComprador2">
-                <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties/>
-              </component>
-              <component id="68545" class="javax.swing.JList" binding="listCompras">
-                <constraints>
-                  <grid row="2" column="1" row-span="3" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties/>
-              </component>
-              <component id="7e582" class="javax.swing.JButton" binding="altaCompraBtn">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <actionCommand value="altaCompraBtn"/>
-                  <text value="Registrar"/>
-                </properties>
-              </component>
-              <component id="2d4cf" class="javax.swing.JButton" binding="eliminarCompraBtn">
-                <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <actionCommand value="eliminarVentaBtn"/>
-                  <text value="Eliminar"/>
-                </properties>
-              </component>
-              <component id="7fe1d" class="javax.swing.JButton" binding="modificarCompraBtn">
-                <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <actionCommand value="modificarCompraBtn"/>
-                  <text value="Modificar"/>
-                </properties>
-              </component>
-              <component id="22f55" class="javax.swing.JComboBox" binding="comboPuzzles2">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties/>
               </component>
             </children>
           </grid>

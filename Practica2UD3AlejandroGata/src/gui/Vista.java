@@ -21,7 +21,6 @@ public class Vista extends JFrame {
     public JButton eliminarTiendaBtn;
     public JTextField txtNombreEditorial;
     public JButton altaEditorialBtn;
-    public JComboBox comboActDispnible;
 
     public JTextField txtIsbn;
     public JTextField txtPrecio;
@@ -42,26 +41,16 @@ public class Vista extends JFrame {
     public JList listTiendas;
     public JList listEditoriales;
 
-    public JButton listarCompradorPuzzles;
-    public JButton listarEditorialPuzzles;
+    public JButton listarEditorialPuzzlesBtn;
     public JTextField txtTlfEditorial;
     public JComboBox comboEditoriales;
     public JComboBox comboTiendas;
     public JComboBox comboPuzzles;
-    public JComboBox comboActividadesInstalacion;
     public JButton altaVentaBtn;
     public JButton eliminarVentaBtn;
     public JButton modificarVentaBtn;
-    public JButton altaCompraBtn;
-    public JButton modificarCompraBtn;
-    public JButton eliminarCompraBtn;
-    public JList listCompradorPuzzles;
     public JList listEditorialPuzzles;
     public JList listVentas;
-    public JList listCompras;
-    public JButton listarPuzzleCompradores;
-    public JComboBox comboPuzzles2;
-    public JComboBox comboComprador2;
 
     DefaultListModel dlmPuzzles;
     DefaultListModel dlmCompradores;
@@ -70,14 +59,11 @@ public class Vista extends JFrame {
 
 
     //Filtros
-    DefaultListModel dlmCompradorPuzzles;
     DefaultListModel dlmEditorialPuzzles;
     DefaultListModel dlmVentas;
-    DefaultListModel dlmCompras;
 
     JMenuItem conexionItem;
     JMenuItem salirItem;
-    JMenuItem actualizarItem;
 
 
     /**
@@ -98,7 +84,7 @@ public class Vista extends JFrame {
     }
 
     /**
-     * Métodoque permite crear los modelos, es decir añadir DLM a las listas
+     * Método que permite crear los modelos, es decir añadir DLM a las listas
      */
     private void crearModelos() {
         dlmPuzzles = new DefaultListModel();
@@ -119,9 +105,6 @@ public class Vista extends JFrame {
         dlmVentas = new DefaultListModel();
         listVentas.setModel(dlmVentas);
 
-        dlmCompras = new DefaultListModel();
-        listCompras.setModel(dlmCompras);
-
     }
 
     /**
@@ -134,15 +117,10 @@ public class Vista extends JFrame {
         conexionItem = new JMenuItem("Conectar");
         conexionItem.setActionCommand("Conectar");
 
-
-        actualizarItem = new JMenuItem("Actualizar");
-        actualizarItem.setActionCommand("Actualizar");
-
         salirItem = new JMenuItem("Salir");
         salirItem.setActionCommand("Salir");
 
         menu.add(conexionItem);
-        menu.add(actualizarItem);
         menu.add(salirItem);
         barra.add(menu);
         frame.setJMenuBar(barra);

@@ -1,11 +1,15 @@
+DROP DATABASE IF EXISTS tiendapuzzles;
+CREATE DATABASE IF EXISTS tiendapuzzles;
+USE tiendapuzzles;
+
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 18-02-2022 a las 23:18:45
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.4.11
+-- Tiempo de generación: 19-02-2022 a las 01:58:41
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.1.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -78,7 +82,9 @@ CREATE TABLE `comprador` (
 --
 
 INSERT INTO `comprador` (`idcomprador`, `nombre`, `apellidos`, `dni`) VALUES
-(1, 'Juan', 'Martinez', 'ASD123');
+(1, 'Marc', 'Gual', '535444201W'),
+(2, 'Raul', 'Guti', '18568541J'),
+(3, 'Josep', 'Pedrerol', '995487562D');
 
 -- --------------------------------------------------------
 
@@ -121,8 +127,10 @@ CREATE TABLE `editorial` (
 --
 
 INSERT INTO `editorial` (`ideditorial`, `nombre`, `telefono`) VALUES
-(3, 'Editorial1', '654321654'),
-(4, 'Editorial2', '6516');
+(3, 'Santillana', '654321654'),
+(5, 'Panamericana', '62421531'),
+(6, 'Planeta', '632123451'),
+(7, 'El Chiringuito', '601535486');
 
 -- --------------------------------------------------------
 
@@ -143,8 +151,12 @@ CREATE TABLE `puzzle` (
 -- Volcado de datos para la tabla `puzzle`
 --
 
-INSERT INTO `puzzle` (`idpuzzle`, `titulo`, `isbn`, `precio`, `ideditorial`, `idcomprador`, `idtienda`) VALUES
-(8, 'titulo1', 'isbn1', 1, NULL, NULL, NULL);
+INSERT INTO `puzzle` (`idpuzzle`, `titulo`, `isbn`, `ideditorial`, `idcomprador`, `idtienda`) VALUES
+(10, 'Gabinete de crisis', '1', 7, NULL, NULL),
+(11, 'La risa va por barrios', '2', 7, NULL, NULL),
+(12, 'Wenger', '3', 7, NULL, NULL),
+(15, 'Hazlo', '4', 7, NULL, NULL),
+(16, 'Amanecer en Sierra Nevada', '5', 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -164,8 +176,9 @@ CREATE TABLE `puzzle_tienda` (
 --
 
 INSERT INTO `puzzle_tienda` (`idpuzzletienda`, `idpuzzle`, `idtienda`, `precio`) VALUES
-(1, 8, 3, 15),
-(2, 8, 3, 45);
+(10, 11, 5, 15),
+(11, 12, 13, 14),
+(12, 10, 5, 10);
 
 -- --------------------------------------------------------
 
@@ -184,9 +197,8 @@ CREATE TABLE `tienda` (
 --
 
 INSERT INTO `tienda` (`idtienda`, `nombre`, `telefono`) VALUES
-(3, 'Tienda1', '859638596'),
-(4, 'Tienda2', '8594'),
-(5, 'Mercadona', '987654321');
+(5, 'Mercadona', '987654321'),
+(13, 'MediaMarkt', '976542135');
 
 --
 -- Índices para tablas volcadas
@@ -245,7 +257,7 @@ ALTER TABLE `tienda`
 -- AUTO_INCREMENT de la tabla `comprador`
 --
 ALTER TABLE `comprador`
-  MODIFY `idcomprador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idcomprador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `comprador_puzzle`
@@ -263,25 +275,25 @@ ALTER TABLE `comprador_tienda`
 -- AUTO_INCREMENT de la tabla `editorial`
 --
 ALTER TABLE `editorial`
-  MODIFY `ideditorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ideditorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `puzzle`
 --
 ALTER TABLE `puzzle`
-  MODIFY `idpuzzle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idpuzzle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `puzzle_tienda`
 --
 ALTER TABLE `puzzle_tienda`
-  MODIFY `idpuzzletienda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idpuzzletienda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `tienda`
 --
 ALTER TABLE `tienda`
-  MODIFY `idtienda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idtienda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
