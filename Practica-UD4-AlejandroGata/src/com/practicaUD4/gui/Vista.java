@@ -3,7 +3,7 @@ package com.practicaUD4.gui;
 import com.github.lgooddatepicker.components.DatePicker;
 import com.practicaUD4.base.Puzzle;
 import com.practicaUD4.base.Editorial;
-import com.practicaUD4.base.Vendedor;
+import com.practicaUD4.base.Sede;
 
 import javax.swing.*;
 
@@ -36,21 +36,18 @@ public class Vista {
     JButton btnModificarEditorial;
     JButton btnEliminarEditorial;
     //Vendedor
-    JList listVendedor;
+    JList listSede;
     JTextField txtBuscarVendedor;
-    DatePicker dateNacimiento;
     JTextField txtNombreVendedor;
-    JTextField txtSalario;
-    JTextField txtApellidos;
-    JComboBox comboEditorial;
-    JButton nuevoVendedorBtn;
-    JButton modificarVendedorBtn;
-    JButton eliminarVendedorBtn;
-    JList listEditorialPuzzles;
+    JButton nuevaSedeBtn;
+    JButton modificarSedeBtn;
+    JButton eliminarSedeBtn;
+    JComboBox comboEditoriales;
+    JComboBox comboSedes;
 
     DefaultListModel<Puzzle> dlmPuzzles;
     DefaultListModel<Editorial> dlmEditoriales;
-    DefaultListModel<Vendedor> dlmVendedores;
+    DefaultListModel<Sede> dlmSedes;
 
     /**
      * Constructor de Vista()
@@ -75,11 +72,10 @@ public class Vista {
         dlmEditoriales = new DefaultListModel<Editorial>();
         listEditorial.setModel(dlmEditoriales);
 
-        dlmVendedores = new DefaultListModel<Vendedor>();
-        listVendedor.setModel(dlmVendedores);
+        dlmSedes = new DefaultListModel<Sede>();
+        listSede.setModel(dlmSedes);
 
         dateFabricacion.getComponentToggleCalendarButton().setText("Calendario");
         dateCreacion.getComponentToggleCalendarButton().setText("Calendario");
-        dateNacimiento.getComponentToggleCalendarButton().setText("Calendario");
     }
 }

@@ -5,7 +5,7 @@ import org.bson.types.ObjectId;
 import java.time.LocalDate;
 /**
  * @author
- * Clase Fruta
+ * Clase Puzzle
  */
 public class Puzzle {
     //Campos
@@ -14,9 +14,8 @@ public class Puzzle {
     private String marca;
     private double precio;
     private LocalDate fechaFabricacion;
-    private Editorial editorial;
     /**
-     * Constructor Fruta() vacio
+     * Constructor Puzzle() vacio
      */
     public Puzzle() {
 
@@ -97,27 +96,8 @@ public class Puzzle {
      * @return marca
      */
 
-    /***
-     * Get getEditorial()
-     * @return editorial de tipo Editorial
-     */
-    public Editorial getEditorial() {
-        return editorial;
-    }
-    /**
-     * Set setEditorial()
-     * @param editorial de tipo Editorial
-     */
-    public void setEditorial(Editorial editorial) {
-        this.editorial = editorial;
-    }
-    /**
-     * Método toString() de tipo String
-     * @return nombre
-     * @return marca
-     */
     @Override
     public String toString() {
-        return nombre + ": " + marca ;
+        return nombre + " : " + marca  + " : " + precio + " : " + fechaFabricacion;
     }
 }

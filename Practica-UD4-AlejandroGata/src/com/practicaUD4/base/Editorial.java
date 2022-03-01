@@ -7,19 +7,18 @@ import java.util.ArrayList;
 
 /**
  * @author
- * Clase Pescado
+ * Clase Editorial
  */
 public class Editorial {
     //Campos
     private ObjectId id;
     private String nombre;
-    private String direccion;
-    private ArrayList<Puzzle> puzzles;
+    private Sede sede;
     private double mediaVentas;
     private LocalDate fechaCreacion;
 
     /**
-     * Coonstructor Pescado() vacio
+     * Constructor Editorial() vacio
      */
     public Editorial() {
     }
@@ -57,23 +56,23 @@ public class Editorial {
     }
 
     /**
-     * Get getDireccion() de tipo String
-     * @return direccion
+     * Set getSede()
+     * @return sede de tipo Sede
      */
-    public String getDireccion() {
-        return direccion;
+    public Sede getSede() {
+        return sede;
+    }
+    /**
+     * Set setSede()
+     * @param sede de tipo Sede
+     */
+    public void setSede(Sede sede) {
+        this.sede = sede;
     }
 
     /**
-     * Set setDireccion()
-     * @param direccion de tipo String
-     */
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-    /**
-     * Get getMediaVentas() de tipo double
-     * @return MediaVentas
+     * Set getMediaVentas()
+     * @return mediaVentas de tipo double
      */
     public double getMediaVentas() {
         return mediaVentas;
@@ -102,14 +101,6 @@ public class Editorial {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public ArrayList<Puzzle> getPuzzles() {
-        return puzzles;
-    }
-
-    public void setPuzzles(ArrayList<Puzzle> puzzles) {
-        this.puzzles = puzzles;
-    }
-
     /**
      * Método toString() de tipo String
      * @return nombre
@@ -117,6 +108,6 @@ public class Editorial {
      */
     @Override
     public String toString() {
-        return  nombre + ":" + direccion;
+        return  nombre + " : "  + sede + " : " + mediaVentas + " : " + fechaCreacion;
     }
 }
