@@ -2,6 +2,8 @@ package com.practicaUD4.base;
 
 import org.bson.types.ObjectId;
 
+import java.time.LocalDate;
+
 /**
  * @author
  * Clase Fruta
@@ -10,12 +12,15 @@ public class Sede {
     //Campos
     private ObjectId id;
     private String nombre;
+    private double mediaClientes;
+    private LocalDate fechaCreacion;
+
     /**
-     * Constructor Fruta() vacio
+     * Constructor Sede() vacio
      */
     public Sede() {
-
     }
+
     /**
      * Get getId de ObjectId
      * @return id
@@ -45,9 +50,24 @@ public class Sede {
         this.nombre = nombre;
     }
 
+    public double getMediaClientes() {
+        return mediaClientes;
+    }
+
+    public void setMediaClientes(double mediaClientes) {
+        this.mediaClientes = mediaClientes;
+    }
+
+    public LocalDate getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(LocalDate fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
 
     @Override
     public String toString() {
-        return nombre + " : " ;
+        return "Nombre: " + nombre + " - Media de clientes al día: " + mediaClientes + " - Fecha de creación: " + fechaCreacion;
     }
 }

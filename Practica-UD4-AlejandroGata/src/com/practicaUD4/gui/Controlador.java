@@ -47,6 +47,7 @@ public class Controlador implements ActionListener, KeyListener {
         modelo.conectar();
         listarPuzzles(modelo.getPuzzles());
         listarEditoriales(modelo.getEditoriales());
+        listarSedes(modelo.getSedes());
     }
 
     /**
@@ -86,6 +87,7 @@ public class Controlador implements ActionListener, KeyListener {
     private void addKeyListeners(KeyListener listener) {
         vista.txtBuscar.addKeyListener(listener);
         vista.txtBuscarEditorial.addKeyListener(listener);
+        vista.txtBuscarSede.addKeyListener(listener);
     }
 
     /**
@@ -153,6 +155,9 @@ public class Controlador implements ActionListener, KeyListener {
                 listarSedes(modelo.getSedes());
                 break;
         }
+        listarPuzzles(modelo.getPuzzles());
+        listarSedes(modelo.getSedes());
+        listarEditoriales(modelo.getEditoriales());
     }
 
     /**
@@ -189,7 +194,9 @@ public class Controlador implements ActionListener, KeyListener {
         for (Sede p : lista) {
             vista.dlmSedes.addElement(p);
         }
-        for (Sede t : lista) {
+        vista.comboSedes.removeAllItems();
+        List<Sede> sedes = modelo.getSedes();
+        for (Sede t : sedes) {
             vista.comboSedes.addItem(t);
         }
         vista.comboSedes.setSelectedIndex(-1);
@@ -214,9 +221,9 @@ public class Controlador implements ActionListener, KeyListener {
      */
     private void modificarEditorialFromCampos(Editorial unaEditorial) {
         unaEditorial.setNombre(vista.txtNombreEditorial.getText());
+        //unaEditorial.setSede((Sede) vista.comboSedes.getSelectedItem());
         unaEditorial.setMediaVentas(Double.parseDouble(vista.txtMediaVentas.getText()));
-        unaEditorial.setFechaCreacion(vista.dateCreacion.getDate());
-        unaEditorial.setSede((Sede) vista.listSede.getSelectedValue());
+        unaEditorial.setFechaFundacion(vista.dateFundacion.getDate());
     }
 
     /**
@@ -225,7 +232,10 @@ public class Controlador implements ActionListener, KeyListener {
      * @param unaSede de tipo Sede
      */
     private void modificarSedeFromCampos(Sede unaSede) {
-        unaSede.setNombre(vista.txtNombreVendedor.getText());
+
+        unaSede.setNombre(vista.txtNombreSede.getText());
+        unaSede.setMediaClientes(Double.parseDouble(vista.txtMediaClientes.getText()));
+        unaSede.setFechaCreacion(vista.dateCreacion.getDate());
     }
 
     /**
@@ -239,10 +249,10 @@ public class Controlador implements ActionListener, KeyListener {
             listarPuzzles(modelo.getPuzzles(vista.txtBuscar.getText()));
         }
         if (e.getSource() == vista.txtBuscarEditorial) {
-            listarEditoriales(modelo.getEditorial(vista.txtBuscarEditorial.getText()));
+            listarEditoriales(modelo.getEditoriales(vista.txtBuscarEditorial.getText()));
         }
-        if (e.getSource() == vista.txtBuscarVendedor) {
-            listarSedes(modelo.getSede(vista.txtBuscarVendedor.getText()));
+        if (e.getSource() == vista.txtBuscarSede) {
+            listarSedes(modelo.getSedes(vista.txtBuscarSede.getText()));
         }
 
     }

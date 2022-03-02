@@ -3,6 +3,7 @@ package com.practicaUD4.base;
 import org.bson.types.ObjectId;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +16,7 @@ public class Editorial {
     private String nombre;
     private Sede sede;
     private double mediaVentas;
-    private LocalDate fechaCreacion;
+    private LocalDate fechaFundacion;
 
     /**
      * Constructor Editorial() vacio
@@ -85,20 +86,13 @@ public class Editorial {
     public void setMediaVentas(double mediaVentas) {
         this.mediaVentas = mediaVentas;
     }
-    /**
-     * Get getFechaCreacion() de LocalDate
-     * @return fechaCreacion
-     */
-    public LocalDate getFechaCreacion() {
-        return fechaCreacion;
+
+    public LocalDate getFechaFundacion() {
+        return fechaFundacion;
     }
 
-    /**
-     * Set setfechaCreacion()
-     * @param fechaCreacion de tipo LocalDate
-     */
-    public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setFechaFundacion(LocalDate fechaFundacion) {
+        this.fechaFundacion = fechaFundacion;
     }
 
     /**
@@ -106,8 +100,10 @@ public class Editorial {
      * @return nombre
      * @return direccion
      */
+
+
     @Override
     public String toString() {
-        return  nombre + " : "  + sede + " : " + mediaVentas + " : " + fechaCreacion;
+        return "Nombre:" + nombre + " -  Sede : "  + sede + " - Media de ventas al mes:" + mediaVentas + " - Fecha de fundación: " + fechaFundacion ;
     }
 }

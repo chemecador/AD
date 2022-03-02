@@ -98,6 +98,6 @@ public class Puzzle {
 
     @Override
     public String toString() {
-        return nombre + " : " + marca  + " : " + precio + " : " + fechaFabricacion;
+        return "Nombre: " + nombre + " - Marca: " + marca  + " - Precio: " + precio + " - Fecha de fabricación: " + fechaFabricacion;
     }
 }

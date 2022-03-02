@@ -27,23 +27,23 @@ public class Vista {
     //Editorial
     private JTabbedPane tabbedPane1;
     JTextField txtNombreEditorial;
-    JTextField txtDireccion;
+    JTextField txtMediaClientes;
     JTextField txtBuscarEditorial;
     JTextField txtMediaVentas;
     JList listEditorial;
-    DatePicker dateCreacion;
+    DatePicker dateFundacion;
     JButton btnNuevaEditorial;
     JButton btnModificarEditorial;
     JButton btnEliminarEditorial;
-    //Vendedor
+    //Sede
     JList listSede;
-    JTextField txtBuscarVendedor;
-    JTextField txtNombreVendedor;
+    JTextField txtBuscarSede;
+    JTextField txtNombreSede;
     JButton nuevaSedeBtn;
     JButton modificarSedeBtn;
     JButton eliminarSedeBtn;
-    JComboBox comboEditoriales;
     JComboBox comboSedes;
+    DatePicker dateCreacion;
 
     DefaultListModel<Puzzle> dlmPuzzles;
     DefaultListModel<Editorial> dlmEditoriales;
@@ -77,5 +77,6 @@ public class Vista {
 
         dateFabricacion.getComponentToggleCalendarButton().setText("Calendario");
         dateCreacion.getComponentToggleCalendarButton().setText("Calendario");
+        dateFundacion.getComponentToggleCalendarButton().setText("Calendario");
     }
 }

@@ -1,10 +1,8 @@
 package com.practicaUD4.gui;
 
 import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
 import com.practicaUD4.base.Editorial;
 import com.practicaUD4.base.Puzzle;
 import com.practicaUD4.base.Sede;
@@ -99,7 +97,7 @@ public class Modelo {
     }
 
     /**
-     * Método getEditorials(), lista Editorials
+     * Método getEditoriales(), lista Editoriales
      *
      * @return lista
      */
@@ -151,45 +149,22 @@ public class Modelo {
 
         return lista;
     }
+
     /**
-     * Método getVendedores(),listo los Vendedores atendiendo a 2 criterios basados en expresiones regulares.
+     * Método getEditorial(),listo los Editoriales atendiendo a 2 criterios basados en expresiones regulares.
      *
      * @param text de tipo String
      * @return lista
      */
-    public List<Puzzle> getSedes(String text) {
-        ArrayList<Puzzle> lista = new ArrayList<>();
-
-        Document query = new Document();
-        List<Document> listaCriterios = new ArrayList<>();
-        listaCriterios.add(new Document("nombre", new Document("$regex", "/*" + text + "/*")));
-        listaCriterios.add(new Document("editorial", new Document("$regex", "/*" + text + "/*")));
-        query.append("$or", listaCriterios);
-
-        Iterator<Document> iterator = coleccionSedes.find(query).iterator();
-        while (iterator.hasNext()) {
-            lista.add(documentToPuzzle(iterator.next()));
-        }
-
-        return lista;
-    }
-
-    /**
-     * Método getEditorial(),listo los Editorials atendiendo a 2 criterios basados en expresiones regulares.
-     *
-     * @param text de tipo String
-     * @return lista
-     */
-    public List<Editorial> getEditorial(String text) {
+    public List<Editorial> getEditoriales(String text) {
         ArrayList<Editorial> lista = new ArrayList<>();
 
         Document query = new Document();
         List<Document> listaCriterios = new ArrayList<>();
         listaCriterios.add(new Document("nombre", new Document("$regex", "/*" + text + "/*")));
-        listaCriterios.add(new Document("apellidos", new Document("$regex", "/*" + text + "/*")));
-        listaCriterios.add(new Document("puzzles", new Document("$regex", "/*" + text + "/*")));
-        listaCriterios.add(new Document("salario", new Document("$regex", "/*" + text + "/*")));
-        listaCriterios.add(new Document("fechaNacimiento", new Document("$regex", "/*" + text + "/*")));
+        listaCriterios.add(new Document("sede", new Document("$regex", "/*" + text + "/*")));
+        listaCriterios.add(new Document("mediaVentas", new Document("$regex", "/*" + text + "/*")));
+        listaCriterios.add(new Document("fechaFundacion", new Document("$regex", "/*" + text + "/*")));
         query.append("$or", listaCriterios);
 
         Iterator<Document> iterator = coleccionEditoriales.find(query).iterator();
@@ -206,13 +181,14 @@ public class Modelo {
      * @param text de tipo String
      * @return lista
      */
-    public List<Sede> getSede(String text) {
+    public List<Sede> getSedes(String text) {
         ArrayList<Sede> lista = new ArrayList<>();
 
         Document query = new Document();
         List<Document> listaCriterios = new ArrayList<>();
         listaCriterios.add(new Document("nombre", new Document("$regex", "/*" + text + "/*")));
-        listaCriterios.add(new Document("editorial", new Document("$regex", "/*" + text + "/*")));
+        listaCriterios.add(new Document("mediaClientes", new Document("$regex", "/*" + text + "/*")));
+        listaCriterios.add(new Document("fechaCreacion", new Document("$regex", "/*" + text + "/*")));
         query.append("$or", listaCriterios);
 
         Iterator<Document> iterator = coleccionSedes.find(query).iterator();
@@ -246,9 +222,9 @@ public class Modelo {
     public Document editorialToDocument(Editorial unEditorial) {
         Document documento = new Document();
         documento.append("nombre", unEditorial.getNombre());
+        documento.append("sede",unEditorial.getSede());
         documento.append("mediaVentas", unEditorial.getMediaVentas());
-        documento.append("fechaCreacion", Util.formatearFecha(unEditorial.getFechaCreacion()));
-        documento.append("sede", unEditorial.getSede());
+        documento.append("fechaFundacion", Util.formatearFecha(unEditorial.getFechaFundacion()));
         return documento;
     }
     /**
@@ -260,6 +236,8 @@ public class Modelo {
     public Document sedeToDocument(Sede v) {
         Document documento = new Document();
         documento.append("nombre", v.getNombre());
+        documento.append("mediaClientes", v.getMediaClientes());
+        documento.append("fechaCreacion", Util.formatearFecha(v.getFechaCreacion()));
         return documento;
     }
     /**
@@ -274,7 +252,6 @@ public class Modelo {
         unPuzzle.setNombre(document.getString("nombre"));
         unPuzzle.setMarca(document.getString("marca"));
         unPuzzle.setPrecio(document.getDouble("precio"));
-        unPuzzle.setPrecio(document.getDouble("editorial"));
         unPuzzle.setFechaFabricacion(Util.parsearFecha(document.getString("fechaFabricacion")));
         return unPuzzle;
     }
@@ -292,7 +269,7 @@ public class Modelo {
         e.setNombre(document.getString("nombre"));
         e.setSede((Sede)document.get("sede"));
         e.setMediaVentas(document.getDouble("mediaVentas"));
-        e.setFechaCreacion(Util.parsearFecha(document.getString("fechaCreacion")));
+        e.setFechaFundacion(Util.parsearFecha(document.getString("fechaFundacion")));
         return e;
     }
     /**
@@ -305,6 +282,8 @@ public class Modelo {
         Sede e = new Sede();
         e.setId(document.getObjectId("_id"));
         e.setNombre(document.getString("nombre"));
+        e.setMediaClientes(document.getDouble("mediaClientes"));
+        e.setFechaCreacion(Util.parsearFecha(document.getString("fechaCreacion")));
         return e;
     }
     /**
